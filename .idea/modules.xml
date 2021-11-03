@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/PrincoGroupProject.iml" filepath="$PROJECT_DIR$/.idea/PrincoGroupProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/princoServer/princoServer.iml" filepath="$PROJECT_DIR$/princoServer/princoServer.iml" />
     </modules>
   </component>
 </project>
