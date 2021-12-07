@@ -5,7 +5,6 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import DashBoard from './pages/Dashboard';
 import MateriiPrime from './pages/MateriiPrime';
-import Home from './pages/Home';
 import Semifabricate1 from './pages/Semifabricate1';
 import Semifabricate2 from './pages/Semifabricate2';
 import ProduseFinite from './pages/ProduseFinite';
@@ -21,7 +20,6 @@ function App() {
       <Route path='/materiiprime' element={<MateriiPrime />} />
       <Route path='/semifabricate1' element={<Semifabricate1 />} />
       <Route path='/semifabricate2' element={<Semifabricate2 />} />
-      <Route path='/acasa' element={<Home />} />
       <Route path='/sign-up' element={<SignUp />} />
       <Route path='/login' element={<Login />} />
       <Route path='/' element={<DashBoard />} />
