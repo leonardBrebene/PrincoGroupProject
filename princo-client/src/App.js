@@ -12,7 +12,8 @@ import Angajati from './pages/Angajati';
 import Rezultate from './pages/Rezultate';
 
 function App() {
-  return (<Router>
+  return (
+  <Router>
     <Routes>
       <Route path='/rezultate' element={<Rezultate />} />
       <Route path='/angajati' element={<Angajati />} />
