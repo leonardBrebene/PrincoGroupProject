@@ -13,6 +13,7 @@ public class MateriiPrimeService {
     private MateriiPrimeRepo repo;
 
     public boolean adaugaPaletMateriiPrime(MateriiPrime m1) {
+        
         MateriiPrime saved = repo.save(m1);
         if (saved != null) {
             return true;

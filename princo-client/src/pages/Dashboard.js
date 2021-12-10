@@ -22,7 +22,10 @@ const DashBoard = () => {
   }
 
   const getdate = () => {
-    return new Date(Date.now()).toISOString()
+    // const date=new Date(Date.now())
+    // return date.toLocaleDateString().replace('/', '-').replace('/', '-') +' '+date.toLocaleTimeString().slice(0,8)
+    //new Date(Date.now()).toISOString().replace('T',' ').slice(0,18)
+    return new Date(Date.now()+2*3600*1000).toISOString().replace('T',' ').slice(0,19)
   }
 
   return (
