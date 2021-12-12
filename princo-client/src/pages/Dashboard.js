@@ -22,11 +22,9 @@ const DashBoard = () => {
   }
 
   const getdate = () => {
-    // const date=new Date(Date.now())
-    // return date.toLocaleDateString().replace('/', '-').replace('/', '-') +' '+date.toLocaleTimeString().slice(0,8)
-    //new Date(Date.now()).toISOString().replace('T',' ').slice(0,18)
     return new Date(Date.now()+2*3600*1000).toISOString().replace('T',' ').slice(0,19)
   }
+
 
   return (
     <>
@@ -39,6 +37,7 @@ const DashBoard = () => {
           style={{ width: '100%' }}
           onError={handleError}
           onScan={handleScan}
+          disabled={visibleQrCode}
         />
         <Button onClick={() => setVisibleQrCode(false)} className="btn btn-primary btn-sm">Close scanning</Button>
       </Modal>

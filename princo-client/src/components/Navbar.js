@@ -1,4 +1,4 @@
-import { Navbar, NavItem, NavDropdown, MenuItem, Nav, Container, Row, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container, } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 const NavbarCustom = () => {
@@ -9,7 +9,7 @@ const NavbarCustom = () => {
     }
 
     return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar bg="dark" variant="dark" expand="md">
             <Container >
                 <Navbar.Brand onClick={() => changeHref("/")}>Princo Group</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

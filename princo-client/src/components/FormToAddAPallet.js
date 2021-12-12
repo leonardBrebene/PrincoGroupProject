@@ -1,6 +1,6 @@
-import { Card, Form, Button, Accordion } from 'react-bootstrap';
+import { Card, Form, Button } from 'react-bootstrap';
 import { useState } from "react";
-import postObject from './postObject';
+import postObject from '../javaScriptComponents/postObject';
 
 const FormToAddAPalet = () => {
     const [userInput, setUserInput] = useState("")
@@ -15,18 +15,18 @@ const FormToAddAPalet = () => {
 
     return (
         <>
-            <Card style={{ maxWidth: '360px' }} >
+            <Card style={{ maxWidth: '360px', border :'0' }} >
                 <Form onSubmit={(e) => console.log(e)}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-1" controlId="formBasicEmail">
                         <Form.Label>Creat de</Form.Label>
-                        <Form.Control placeholder="Nume" onChange={(e) => setUserInput(e.target.value)} />
+                        <Form.Control size="sm" placeholder="Nume" onChange={(e) => setUserInput(e.target.value)} />
                         <Form.Text className="text-muted">
                         </Form.Text>
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Group className="mb-1" controlId="formBasicPassword">
                         <Form.Label>Materie Prima</Form.Label>
-                        <Form.Control placeholder="Materie prima" onChange={(e) => setMaterialInput(e.target.value)} />
+                        <Form.Control size="sm" placeholder="Materie prima" onChange={(e) => setMaterialInput(e.target.value)} />
                     </Form.Group>
                     <Button variant="primary" name="dataOra" onClick={handleSubmit}>
                         Trimite

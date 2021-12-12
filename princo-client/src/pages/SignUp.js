@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { Form, Button, Card, Alert, Container } from 'react-bootstrap'
-import postObject from '../components/postObject';
+import postObject from '../javaScriptComponents/postObject';
 
 
 
