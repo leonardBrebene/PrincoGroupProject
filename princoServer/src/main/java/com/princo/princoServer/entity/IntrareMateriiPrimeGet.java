@@ -6,28 +6,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+
 @Setter 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name="intrarimateriiprime")
-public class IntrareMateriiPrime {
+@Table (name="intrari_materii_prime")
+public class IntrareMateriiPrimeGet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idIntrareMateriiPrime")
@@ -46,9 +40,8 @@ public class IntrareMateriiPrime {
     private String employee;
     
     @JsonIgnore
-    @ManyToOne(optional=false) 
-    @JoinColumn(name="idIntrareFK", nullable=false, updatable=false)
-    @JsonIgnoreProperties("IntrareMateriiPrime")
+    @ManyToOne
+    @JoinColumn(name="idIntrareFK")
     public MateriiPrime  materiiPrime; 
     
 }

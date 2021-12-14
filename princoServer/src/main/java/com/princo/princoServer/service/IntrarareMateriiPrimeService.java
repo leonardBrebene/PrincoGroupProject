@@ -4,24 +4,28 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import com.princo.princoServer.entity.IntrareMateriiPrime;
-import com.princo.princoServer.repository.IntrareMateriiPrimeRepo;
+import com.princo.princoServer.entity.IntrareMateriiPrimeGet;
+import com.princo.princoServer.entity.IntrareMateriiPrimePost;
+import com.princo.princoServer.repository.IntrareMateriiPrimeGetRepo;
+import com.princo.princoServer.repository.IntrareMateriiPrimePostRepo;
 
 @Service
 public class IntrarareMateriiPrimeService {
     @Autowired
-    private IntrareMateriiPrimeRepo repo;
+    private IntrareMateriiPrimeGetRepo repoGet;
+    @Autowired
+    private IntrareMateriiPrimePostRepo repoPost;
 
-    public boolean adaugaIntrareMateriiPrime(IntrareMateriiPrime i1) {
-        IntrareMateriiPrime saved = repo.save(i1);
+    public boolean adaugaIntrareMateriiPrime(IntrareMateriiPrimePost i1) {
+        IntrareMateriiPrimePost saved = repoPost.save(i1);
         if (saved != null) {
             return true;
         }
         return false;
     }
 
-    public List<IntrareMateriiPrime> colecteazaIntrariMateriiPrime(Integer id) {
-        return repo.findAllByPaletId(id);
+    public List<IntrareMateriiPrimeGet> colecteazaIntrariMateriiPrime(Integer id) {
+        return repoGet.findAllByPaletId(id);
     }
 }
 

@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.princo.princoServer.entity.IntrareMateriiPrime;
+import com.princo.princoServer.entity.IntrareMateriiPrimeGet;
+import com.princo.princoServer.entity.IntrareMateriiPrimePost;
 import com.princo.princoServer.entity.MateriiPrime;
 import com.princo.princoServer.service.IntrarareMateriiPrimeService;
 import com.princo.princoServer.service.MateriiPrimeService;
@@ -32,7 +33,7 @@ public class PrincoController {
     @CrossOrigin
     @GetMapping("/stocuriIntrariMateriiPrime/{id}")
   
-    public List<IntrareMateriiPrime> intrariMateriiPrime(@PathVariable Integer id) {
+    public List<IntrareMateriiPrimeGet> intrariMateriiPrime(@PathVariable Integer id) {
         return intrareMateriiPrimeService.colecteazaIntrariMateriiPrime(id);
     }
 
@@ -49,7 +50,7 @@ public class PrincoController {
 
     @CrossOrigin
     @PostMapping("/stocuriIntrariMateriiPrime/adauga")
-    public Map<String, Object> addEntraceToPalet(@RequestBody IntrareMateriiPrime i1) {
+    public Map<String, Object> addEntraceToPalet(@RequestBody IntrareMateriiPrimePost i1) {
 
         if (intrareMateriiPrimeService.adaugaIntrareMateriiPrime(i1)) {
             return Collections.singletonMap("succes", true);

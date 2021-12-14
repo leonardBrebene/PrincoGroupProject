@@ -1,4 +1,3 @@
-import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
 // A function that authenticates the users

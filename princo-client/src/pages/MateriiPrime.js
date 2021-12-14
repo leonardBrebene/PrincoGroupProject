@@ -1,22 +1,21 @@
 import NavbarCustom from "../components/Navbar";
-import { Card, Form, Button, Accordion, useAccordionButton } from 'react-bootstrap';
+import {Accordion } from 'react-bootstrap';
 import FormToAddAPalet from "../components/FormToAddAPallet";
 import useFetch from '../javaScriptComponents/useFetch';
-import { useState, useEffect } from "react";
+//import { useState } from "react";
 import FormToAddNewEntry from "../components/FormToAddNewEntry";
 import TableOfEntries from "../components/TableOfEntryes";
 
 
 const MateriiPrime = () => {
-    const { data, isPending, error, setData } = useFetch("http://192.168.0.17:8080/stocuriMateriiPrime");
-    const[tableCanbeViewed, setTableCanbeViewed]=useState(false)
-    //const [data, setData] = useState('')
+    const { data, isPending, error } = useFetch("http://192.168.0.17:8080/stocuriMateriiPrime");
+
 
     return (
         <>
             <NavbarCustom />
             Materii Prime
-            <Accordion flush //on={()=>{fetchDates(); console.log("am intrat in onLoad")}}
+            <Accordion flush 
             >
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Adauga palet</Accordion.Header>
@@ -25,13 +24,12 @@ const MateriiPrime = () => {
                     </Accordion.Body>
                 </Accordion.Item>
                 {<h3>{error && error.toString()}</h3>}
-                {data&&console.log(data)}
                 {!isPending && data.map(palet =>
                     <Accordion.Item eventKey={palet.idIntrare} key={palet.idIntrare}>
-                        <Accordion.Header onClick={()=>setTableCanbeViewed(true)}>Paletul {palet.id} cu {palet.material} </Accordion.Header>
+                        <Accordion.Header>Paletul {palet.idIntrare} cu {palet.material} </Accordion.Header>
                         <Accordion.Body>
                             <FormToAddNewEntry paletNr={palet.idIntrare} />
-                            {tableCanbeViewed&&<TableOfEntries paletNr={palet.idIntrare} intrariPalet={palet.intrariMateriiPrime}/>}
+                            <TableOfEntries paletNr={palet.idIntrare} intrariPalet={palet.intrariMateriiPrime} error={error}/>
                             Acest palet a fost creat de {palet.userName} la {palet.dateOfCreate}
                         </Accordion.Body>
                     </Accordion.Item>

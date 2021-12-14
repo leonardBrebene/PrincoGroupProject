@@ -1,10 +1,11 @@
 import NavbarCustom from "../components/Navbar";
-import {Form,Button, Modal, InputGroup, FormControl } from 'react-bootstrap';
+import { Form, Button} from 'react-bootstrap';
 
 const Semifabricate1 = () => {
-    return (<div><NavbarCustom/><div>
-        Semifabricate1
-        <Form>
+    return (
+        <div><NavbarCustom /><div>
+            Semifabricate1
+            <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" />
@@ -20,12 +21,12 @@ const Semifabricate1 = () => {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
-                <Button  onClick={() => console.log("AmfostApasat")}>
+                <Button onClick={() => console.log("AmfostApasat")}>
                     Submit
                 </Button>
             </Form>
-    </div>
-    </div>  );
+        </div>
+        </div>);
 }
- 
+
 export default Semifabricate1;

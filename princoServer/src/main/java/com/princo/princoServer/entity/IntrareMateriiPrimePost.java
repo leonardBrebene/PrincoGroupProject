@@ -1,52 +1,39 @@
 package com.princo.princoServer.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
 @Setter 
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Data
-@Table (name="materii_prime")
-public class MateriiPrime {
+@Table (name="intrari_materii_prime")
+public class IntrareMateriiPrimePost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idIntrare")
-    private int idIntrare;
-    @Column(name="userName")
-    private String userName;
+    @Column(name="idIntrareMateriiPrime")
+    private int idIntrareMateriiPrime;
+    @Column(name="idIntrareFK")
+    private int idIntrareFK;
     @Column(name="material")
     private String material;
+    @Column(name="userName")
+    private String userName;
     @Column(name="dateOfCreate")
     private String dateOfCreate;
-    
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="materiiPrime")
-    @JsonIgnoreProperties("MateriiPrime")
-    public List<IntrareMateriiPrimeGet> intrariMateriiPrime; 
-
-    
-
-
-   
+    @Column(name="quantity")
+    private float quantity;
+    @Column(name="employee")
+    private String employee;
 }

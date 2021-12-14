@@ -1,12 +1,10 @@
-import { Table, Nav, Container, } from 'react-bootstrap';
-import useFetch from '../javaScriptComponents/useFetch';
+import { Table } from 'react-bootstrap';
 
 
-const TableOfEntries = ({ paletNr,intrariPalet }) => {
-   // const { data, isPending, error, setData } = useFetch(`http://192.168.0.17:8080//stocuriIntrariMateriiPrime/${paletNr}`);
+const TableOfEntries = ({ intrariPalet,error }) => {
     return (
         <>
-            {/* //{<h3>{error && error.toString()}</h3>} */}
+            {<h3>{error && error.toString()}</h3>} 
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>

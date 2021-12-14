@@ -4,10 +4,10 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-import com.princo.princoServer.entity.IntrareMateriiPrime;
+import com.princo.princoServer.entity.IntrareMateriiPrimeGet;
 
-public interface IntrareMateriiPrimeRepo extends JpaRepository<IntrareMateriiPrime,Integer> {
+public interface IntrareMateriiPrimeGetRepo extends JpaRepository<IntrareMateriiPrimeGet,Integer> {
    
     @Query( value = "select * from intrari_materii_prime i where i.idIntrare = :id",nativeQuery = true)
-    List<IntrareMateriiPrime> findAllByPaletId(Integer id);
+    List<IntrareMateriiPrimeGet> findAllByPaletId(Integer id);
 }
