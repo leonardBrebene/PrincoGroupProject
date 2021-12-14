@@ -25,12 +25,13 @@ const MateriiPrime = () => {
                     </Accordion.Body>
                 </Accordion.Item>
                 {<h3>{error && error.toString()}</h3>}
+                {data&&console.log(data)}
                 {!isPending && data.map(palet =>
                     <Accordion.Item eventKey={palet.idIntrare} key={palet.idIntrare}>
                         <Accordion.Header onClick={()=>setTableCanbeViewed(true)}>Paletul {palet.id} cu {palet.material} </Accordion.Header>
                         <Accordion.Body>
                             <FormToAddNewEntry paletNr={palet.idIntrare} />
-                            {tableCanbeViewed&&<TableOfEntries paletNr={palet.idIntrare}/>}
+                            {tableCanbeViewed&&<TableOfEntries paletNr={palet.idIntrare} intrariPalet={palet.intrariMateriiPrime}/>}
                             Acest palet a fost creat de {palet.userName} la {palet.dateOfCreate}
                         </Accordion.Body>
                     </Accordion.Item>

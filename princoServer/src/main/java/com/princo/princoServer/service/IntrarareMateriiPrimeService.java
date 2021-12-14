@@ -13,7 +13,6 @@ public class IntrarareMateriiPrimeService {
     private IntrareMateriiPrimeRepo repo;
 
     public boolean adaugaIntrareMateriiPrime(IntrareMateriiPrime i1) {
-        
         IntrareMateriiPrime saved = repo.save(i1);
         if (saved != null) {
             return true;

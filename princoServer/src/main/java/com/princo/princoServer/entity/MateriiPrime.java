@@ -1,21 +1,36 @@
 package com.princo.princoServer.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Setter @Getter
-@AllArgsConstructor
-@NoArgsConstructor
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+
+@Setter 
+@Getter
 @Entity
-@Table (name="materii_prime")
+@Data
+@Table (name="materiiprime")
 public class MateriiPrime {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idIntrare")
     private int idIntrare;
     @Column(name="userName")
@@ -24,5 +39,14 @@ public class MateriiPrime {
     private String material;
     @Column(name="dateOfCreate")
     private String dateOfCreate;
-        
+    
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="materiiPrime")
+    @JsonIgnoreProperties("MateriiPrime")
+    public List<IntrareMateriiPrime> intrariMateriiPrime; 
+
+    
+
+
+   
 }
