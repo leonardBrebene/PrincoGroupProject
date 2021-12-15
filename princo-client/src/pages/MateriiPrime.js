@@ -5,11 +5,11 @@ import useFetch from '../javaScriptComponents/useFetch';
 //import { useState } from "react";
 import FormToAddNewEntry from "../components/FormToAddNewEntry";
 import TableOfEntries from "../components/TableOfEntryes";
+import IpulMeu from "../components/IpulMeu";
 
 
 const MateriiPrime = () => {
-    const { data, isPending, error } = useFetch("http://192.168.0.17:8080/stocuriMateriiPrime");
-
+    const { data, isPending, error } = useFetch(`${IpulMeu}/stocuriMateriiPrime`);
 
     return (
         <>

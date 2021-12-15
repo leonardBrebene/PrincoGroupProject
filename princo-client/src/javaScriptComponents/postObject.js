@@ -1,9 +1,10 @@
+import IpulMeu from "../components/IpulMeu";
 
 const postObject = async (restoflink, item) => {
     //const[response,setResponse]=useState()
     // item={...item,id: Math.floor(Math.random() * 9999)}
     console.log(item.toString())
-   const res= await fetch(`http://192.168.0.17:8080/${restoflink}`, {
+   const res= await fetch(`${IpulMeu}/${restoflink}`, {
         method: 'POST',
         headers: {
             'Content-type':'application/json'
