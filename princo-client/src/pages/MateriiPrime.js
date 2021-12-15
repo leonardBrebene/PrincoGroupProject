@@ -9,12 +9,11 @@ import IpulMeu from "../components/IpulMeu";
 
 
 const MateriiPrime = () => {
-    const { data, isPending, error } = useFetch(`${IpulMeu}/stocuriMateriiPrime`);
-
+    const { data, isPending, error } = useFetch(`${IpulMeu()}/stocuriMateriiPrime`);
+    
     return (
-        <>
+        <> 
             <NavbarCustom />
-            Materii Prime
             <Accordion flush 
             >
                 <Accordion.Item eventKey="0">
@@ -22,7 +21,7 @@ const MateriiPrime = () => {
                     <Accordion.Body >
                         <FormToAddAPalet />
                     </Accordion.Body>
-                </Accordion.Item>
+                </Accordion.Item>           
                 {<h3>{error && error.toString()}</h3>}
                 {!isPending && data.map(palet =>
                     <Accordion.Item eventKey={palet.idIntrare} key={palet.idIntrare}>
