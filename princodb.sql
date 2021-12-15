@@ -3,8 +3,10 @@ DROP DATABASE contacte;
 CREATE DATABASE princodb;
 
 USE princodb;
-DROP TABLE materiiprime;
-DELETE FROM materii_prime WHERE idintrare = 4;
+DROP TABLE intrari_materii_prime;
+DROP TABLE materii_prime;
+
+DELETE FROM materii_prime WHERE idintrare = 3;
  
 CREATE TABLE materii_prime(
 idIntrare INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,18 +26,12 @@ employee  VARCHAR(20),
 foreign key (idIntrareFK) references materii_prime(idIntrare)
 );
 
-INSERT INTO materiiprime(material,username,dateofcreate)VALUES("lemn","Leo","2021-12-12 13:40:02");
-INSERT INTO intrarimateriiprime(idIntrareFK,material,userName,dateOfCreate,quantity,employee) values (1,"sipci 20x30","Leonard","2021-12-12 13:40:02",20,"CristiDoru");
+INSERT INTO intrari_materii_prime(idIntrare,material,userName,dateOfCreate,quantity,employee) values (5,"sipci 20x30","Leonard","021-12-12 13:40:02",20,"CristiDoru");
 
 SELECT * FROM materii_prime;
-SELECT * FROM intrari_materii_prime;
 
+SELECT * FROM intrari_materii_prime intrari ;
+SELECT intrari FROM intrari_materii_prime intrari WHERE intrari.idIntrare = 1;
 
-ALTER TABLE intrari_materii_prime
-DROP constraint idIntrare;
-
-ALTER TABLE intrari_materii_prime
+ALTER TABLE materii_prime
 ADD foreign key (idIntrare) references materii_prime(idIntrare);
-
-DELETE FROM intrarimateriiprime WHERE idIntrareMateriiPrime=3;
-

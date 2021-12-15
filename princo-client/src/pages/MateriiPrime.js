@@ -28,7 +28,7 @@ const MateriiPrime = () => {
                         <Accordion.Header>Paletul {palet.idIntrare} cu {palet.material} </Accordion.Header>
                         <Accordion.Body>
                             <FormToAddNewEntry paletNr={palet.idIntrare} />
-                            <TableOfEntries paletNr={palet.idIntrare} intrariPalet={palet.intrariMateriiPrime} error={error}/>
+                            {<TableOfEntries paletNr={palet.idIntrare} intrariPalet={palet.intrariMateriiPrime} error={error}/>}
                             Acest palet a fost creat de {palet.userName} la {palet.dateOfCreate}
                         </Accordion.Body>
                     </Accordion.Item>

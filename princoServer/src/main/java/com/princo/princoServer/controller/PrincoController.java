@@ -40,7 +40,6 @@ public class PrincoController {
     @CrossOrigin
     @PostMapping("/stocuriMateriiPrime/adauga")
     public Map<String, Object> addPalet(@RequestBody MateriiPrime m1) {
-
         if (materiiPrimeService.adaugaPaletMateriiPrime(m1)) {
             return Collections.singletonMap("succes", true);
         } else {
