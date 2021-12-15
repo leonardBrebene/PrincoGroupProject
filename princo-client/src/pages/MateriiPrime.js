@@ -6,6 +6,7 @@ import useFetch from '../javaScriptComponents/useFetch';
 import FormToAddNewEntry from "../components/FormToAddNewEntry";
 import TableOfEntries from "../components/TableOfEntryes";
 import IpulMeu from "../components/IpulMeu";
+import QrcodeCustom from "../components/QrCodeCustom";
 
 
 const MateriiPrime = () => {
@@ -25,10 +26,10 @@ const MateriiPrime = () => {
                 {<h3>{error && error.toString()}</h3>}
                 {!isPending && data.map(palet =>
                     <Accordion.Item eventKey={palet.idIntrare} key={palet.idIntrare}>
-                        <Accordion.Header>Paletul {palet.idIntrare} cu {palet.material} </Accordion.Header>
+                        <Accordion.Header> <QrcodeCustom text={palet.dateOfCreate}/> Paletul {palet.dateOfCreate} cu {palet.material} </Accordion.Header>
                         <Accordion.Body>
                             <FormToAddNewEntry paletNr={palet.idIntrare} />
-                            {<TableOfEntries paletNr={palet.idIntrare} intrariPalet={palet.intrariMateriiPrime} error={error}/>}
+                            <TableOfEntries paletNr={palet.idIntrare} intrariPalet={palet.intrariMateriiPrime} error={error}/>
                             Acest palet a fost creat de {palet.userName} la {palet.dateOfCreate}
                         </Accordion.Body>
                     </Accordion.Item>

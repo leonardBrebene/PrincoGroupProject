@@ -7,7 +7,7 @@ const QrcodeCustom = ({text}) => {
     }, [text])
     return (
     <div>
-    <img src={src} alt="qrCodeImage" />
+    <img src={src} alt="qrCodeImage" style={{maxHeight:"65px",zIndex:"10px"}} />
     </div>  
     );
 }

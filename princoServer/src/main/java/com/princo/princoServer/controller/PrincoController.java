@@ -1,5 +1,8 @@
 package com.princo.princoServer.controller;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +43,9 @@ public class PrincoController {
     @CrossOrigin
     @PostMapping("/stocuriMateriiPrime/adauga")
     public Map<String, Object> addPalet(@RequestBody MateriiPrime m1) {
+       
+        m1.setDateOfCreate(LocalDateTime.now().toString());
+        
         if (materiiPrimeService.adaugaPaletMateriiPrime(m1)) {
             return Collections.singletonMap("succes", true);
         } else {
