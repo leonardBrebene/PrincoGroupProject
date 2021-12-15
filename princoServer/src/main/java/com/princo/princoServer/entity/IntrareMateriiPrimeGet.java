@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -40,7 +41,7 @@ public class IntrareMateriiPrimeGet {
     @Column(name="employee")
     private String employee;
     
-    //@JsonIgnore
+    @JsonIgnore
     @ManyToOne (fetch =FetchType.LAZY)
     @JoinColumn(name="idIntrareFK")
     public MateriiPrime  materiiPrime; 
