@@ -68,7 +68,7 @@ return (
 
             />
           </InputGroup>
-        <div id="the_canvas_element_id">
+        <div >
           <QrcodeCustom text={qrCodeText ? qrCodeText : "princoGroup"} />
           <p>202105061839</p>
         </div>
