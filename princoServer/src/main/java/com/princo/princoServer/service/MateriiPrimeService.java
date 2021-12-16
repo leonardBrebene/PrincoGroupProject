@@ -24,4 +24,8 @@ public class MateriiPrimeService {
     public List<MateriiPrime> colecteazaMateriiPrime() {
         return repo.findAll();
     }
+
+    public MateriiPrime getPaletMateriiPrime(String date){
+        return repo.findByPaletDate(date);
+    }
 }

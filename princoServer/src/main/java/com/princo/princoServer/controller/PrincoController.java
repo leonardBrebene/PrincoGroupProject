@@ -41,6 +41,12 @@ public class PrincoController {
     }
 
     @CrossOrigin
+    @GetMapping("/stocuriMateriiPrime/{date}")
+    public MateriiPrime paletMateriiPrime(@PathVariable String date){
+        return materiiPrimeService.getPaletMateriiPrime(date);
+    } 
+
+    @CrossOrigin
     @PostMapping("/stocuriMateriiPrime/adauga")
     public Map<String, Object> addPalet(@RequestBody MateriiPrime m1) {
        
