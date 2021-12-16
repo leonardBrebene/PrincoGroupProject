@@ -69,7 +69,7 @@ const FormToAddNewEntry = ({ paletNr }) => {
                                 <Form.Control size="sm" placeholder="Numele Angajatulu" onChange={(e) => setEmployeeName(e.target.value)} />
                             </Form.Group>
 
-                            <Button variant="primary" name="dataOra" onClick={handleSubmit}>
+                            <Button type="submit" variant="primary" name="dataOra" onClick={handleSubmit}>
                                 Trimite
                             </Button>
                         </Form>

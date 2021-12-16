@@ -28,7 +28,7 @@ const FormToAddAPalet = () => {
                         <Form.Label>Materie Prima</Form.Label>
                         <Form.Control size="sm" placeholder="Materie prima" onChange={(e) => setMaterialInput(e.target.value)} />
                     </Form.Group>
-                    <Button variant="primary" name="dataOra" onClick={handleSubmit}>
+                    <Button type="submit" variant="primary" name="dataOra" onClick={handleSubmit}>
                         Trimite
                     </Button>
                 </Form>
