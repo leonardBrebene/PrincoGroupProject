@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState,useRef} from 'react'
 import axios from 'axios'
 
 
@@ -7,6 +7,7 @@ const useFetch = (url) => {
     const[data, setData]=useState([]);
     const[isPending, setIsPending]=useState(true);
     const[error,setError]=useState(null);
+    const [trigerFetch,setTrigerFetch] = useState(false);
     
     useEffect(() => {
             axios.get(url)
@@ -27,11 +28,12 @@ const useFetch = (url) => {
                     setIsPending(false);
                     setError(err.message)
                 })
+                console.log("sunt in useEffect")
                 
-    }, [url])
+    }, [url,trigerFetch])  //trigerFetch e o dependinta care declanseaza useEffect atunci cand se schimba
     
 
-    return {data,isPending,error,setData,}
+    return {data,isPending,error,setTrigerFetch}
 }
 
 export default useFetch

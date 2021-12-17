@@ -2,7 +2,7 @@ import { Card, Form, Button, Accordion, useAccordionButton } from 'react-bootstr
 import { useState } from "react";
 import postObject from '../javaScriptComponents/postObject';
 
-const FormToAddNewEntry = ({ paletNr }) => {
+const FormToAddNewEntry = ({ paletNr,setTrigerFetch }) => {
     const [userInput, setUserInput] = useState("")
     const [materialInput, setMaterialInput] = useState("")
     const [quantityInput, setQuantitylInput] = useState()
@@ -10,7 +10,7 @@ const FormToAddNewEntry = ({ paletNr }) => {
 
     console.log("Am intrat in FormToAddEntry")
     async function handleSubmit() {
-        console.log('peletNr ' + paletNr)
+
         const datesToBeSent = {
             idIntrareFK: paletNr, material: materialInput,
             userName: userInput, dateOfCreate: new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19),
@@ -18,6 +18,7 @@ const FormToAddNewEntry = ({ paletNr }) => {
         }
         console.log(datesToBeSent)
         postObject("/stocuriIntrariMateriiPrime/adauga", datesToBeSent)
+        .then(setTrigerFetch(prevState=>!prevState)) //dupa ce ai facut post declanseaza un fetch 
 
     }
 
@@ -69,7 +70,7 @@ const FormToAddNewEntry = ({ paletNr }) => {
                                 <Form.Control size="sm" placeholder="Numele Angajatulu" onChange={(e) => setEmployeeName(e.target.value)} />
                             </Form.Group>
 
-                            <Button type="submit" variant="primary" name="dataOra" onClick={handleSubmit}>
+                            <Button variant="primary" name="dataOra" onClick={handleSubmit}>
                                 Trimite
                             </Button>
                         </Form>
