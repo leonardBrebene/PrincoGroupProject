@@ -19,7 +19,7 @@ const MateriiPrime = () => {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Adauga palet</Accordion.Header>
                     <Accordion.Body >
-                        <FormToAddAPalet />
+                         <FormToAddAPalet setTrigerFetch={setTrigerFetch} /> {/*Asa setezi o proprietate pentru o componenta */}
                     </Accordion.Body>
                 </Accordion.Item>           
                 {<h3>{error && error.toString()}</h3>}
