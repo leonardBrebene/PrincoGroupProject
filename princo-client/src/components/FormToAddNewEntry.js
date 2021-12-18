@@ -12,7 +12,8 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
 
     console.log("Am intrat in FormToAddEntry")
     async function handleSubmit() {
-        if(materialInput&&userInput&&quantityInput){
+
+        if(materialInput&&userInput&&quantityInput&&employeeName){
             const datesToBeSent = {
                 idIntrareFK: paletNr, material: materialInput,
                 userName: userInput, dateOfCreate: new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19),
@@ -21,12 +22,12 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
             console.log(datesToBeSent)
             postObject("/stocuriIntrariMateriiPrime/adauga", datesToBeSent)
                 .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
-        }
-        else{
+        }else{
             setErrorMessage("Ai lasat campuri neintroduse")
             setTimeout(() => {
                 setErrorMessage("") 
             }, 3000);
+            setMaterialInput(""); setUserInput(""); setQuantitylInput(""); setEmployeeName("")
         }
       
 
