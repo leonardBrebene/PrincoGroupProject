@@ -7,18 +7,28 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
     const [materialInput, setMaterialInput] = useState("")
     const [quantityInput, setQuantitylInput] = useState()
     const [employeeName, setEmployeeName] = useState("")
+    const [errorMessage, setErrorMessage] = useState("")
+
 
     console.log("Am intrat in FormToAddEntry")
     async function handleSubmit() {
-
-        const datesToBeSent = {
-            idIntrareFK: paletNr, material: materialInput,
-            userName: userInput, dateOfCreate: new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19),
-            quantity: quantityInput, employee: employeeName
+        if(materialInput&&userInput&&quantityInput){
+            const datesToBeSent = {
+                idIntrareFK: paletNr, material: materialInput,
+                userName: userInput, dateOfCreate: new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19),
+                quantity: quantityInput, employee: employeeName
+            }
+            console.log(datesToBeSent)
+            postObject("/stocuriIntrariMateriiPrime/adauga", datesToBeSent)
+                .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
         }
-        console.log(datesToBeSent)
-        postObject("/stocuriIntrariMateriiPrime/adauga", datesToBeSent)
-            .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
+        else{
+            setErrorMessage("Ai lasat campuri neintroduse")
+            setTimeout(() => {
+                setErrorMessage("") 
+            }, 3000);
+        }
+      
 
     }
 
@@ -51,7 +61,7 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
                         <Form >
                             <Form.Group className="mb-1" >
                                 <Form.Label>Intrare introdusa de:</Form.Label>
-                                <Form.Control size="sm" placeholder="Nume" onChange={(e) => setUserInput(e.target.value)} />
+                                <Form.Control required size="sm" placeholder="Nume" onChange={(e) => setUserInput(e.target.value)} />
                                 <Form.Text className="text-muted">
                                 </Form.Text>
                             </Form.Group>
@@ -70,11 +80,12 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
                                 <Form.Label>Numele Angajatului</Form.Label>
                                 <Form.Control size="sm" placeholder="Numele Angajatulu" onChange={(e) => setEmployeeName(e.target.value)} />
                             </Form.Group>
-
+                            {errorMessage&&<Button variant="danger">{errorMessage.toString()}</Button>}
                             <Button variant="dark" name="dataOra" onClick={handleSubmit} type="reset">
                                 Trimite
                             </Button>
                         </Form>
+                        
                     </Card.Body>
                 </Accordion.Collapse>
 
