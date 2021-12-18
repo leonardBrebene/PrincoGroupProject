@@ -16,12 +16,12 @@ const MateriiPrime = () => {
             <NavbarCustom />
             <Accordion flush 
             >
-                <Accordion.Item eventKey="0">
+                {/* <Accordion.Item eventKey="0">
                     <Accordion.Header>Adauga palet</Accordion.Header>
-                    <Accordion.Body >
+                    <Accordion.Body > */}
                          <FormToAddAPalet setTrigerFetch={setTrigerFetch} /> {/*Asa setezi o proprietate pentru o componenta */}
-                    </Accordion.Body>
-                </Accordion.Item>           
+                    {/* </Accordion.Body>
+                </Accordion.Item>            */}
                 {<h3>{error && error.toString()}</h3>}
                 {!isPending && data.map(palet =>
                     <Accordion.Item eventKey={palet.idIntrare} key={palet.idIntrare}>

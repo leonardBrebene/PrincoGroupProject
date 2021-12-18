@@ -1,4 +1,4 @@
-import {useEffect, useState,useRef} from 'react'
+import {useEffect, useState} from 'react'
 import axios from 'axios'
 
 
@@ -33,7 +33,7 @@ const useFetch = (url) => {
     }, [url,trigerFetch])  //trigerFetch e o dependinta care declanseaza useEffect atunci cand se schimba
     
 
-    return {data,isPending,error,setTrigerFetch}
+    return {data,isPending,error,setData, setTrigerFetch}
 }
 
 export default useFetch

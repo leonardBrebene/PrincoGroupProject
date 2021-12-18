@@ -2,7 +2,7 @@ import { Card, Form, Button, Accordion, useAccordionButton } from 'react-bootstr
 import { useState } from "react";
 import postObject from '../javaScriptComponents/postObject';
 
-const FormToAddNewEntry = ({ paletNr,setTrigerFetch }) => {
+const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
     const [userInput, setUserInput] = useState("")
     const [materialInput, setMaterialInput] = useState("")
     const [quantityInput, setQuantitylInput] = useState()
@@ -18,7 +18,7 @@ const FormToAddNewEntry = ({ paletNr,setTrigerFetch }) => {
         }
         console.log(datesToBeSent)
         postObject("/stocuriIntrariMateriiPrime/adauga", datesToBeSent)
-        .then(setTrigerFetch(prevState=>!prevState)) //dupa ce ai facut post declanseaza un fetch 
+            .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
 
     }
 
@@ -70,12 +70,13 @@ const FormToAddNewEntry = ({ paletNr,setTrigerFetch }) => {
                                 <Form.Control size="sm" placeholder="Numele Angajatulu" onChange={(e) => setEmployeeName(e.target.value)} />
                             </Form.Group>
 
-                            <Button variant="primary" name="dataOra" onClick={handleSubmit}>
+                            <Button variant="primary" name="dataOra" onClick={handleSubmit} type="reset">
                                 Trimite
                             </Button>
                         </Form>
                     </Card.Body>
                 </Accordion.Collapse>
+
             </Card>
         </Accordion>
 
