@@ -30,7 +30,7 @@ const FormToAddAPalet = ({ setTrigerFetch }) => {
 
         return (
             <Button
-                type="button"
+                type="button" variant="outline-dark"
                 onClick={decoratedOnClick}
             >
                 {children}
@@ -58,7 +58,7 @@ const FormToAddAPalet = ({ setTrigerFetch }) => {
                                     <Form.Label>Nume palet</Form.Label>
                                     <Form.Control size="sm" placeholder="Nume palet" onChange={(e) => setMaterialInput(e.target.value)} />
                                 </Form.Group>
-                                <Button variant="primary" name="dataOra" onClick={handleSubmitPalet} type="reset">
+                                <Button variant="dark" name="dataOra" onClick={handleSubmitPalet} type="reset">
                                     Trimite
                                 </Button>
                             </Form>
@@ -77,7 +77,7 @@ const FormToAddAPalet = ({ setTrigerFetch }) => {
                                     <Form.Label>Nume piesa</Form.Label>
                                     <Form.Control size="sm" placeholder="Nume piesa" onChange={(e) => setPieceInput(e.target.value)} />
                                 </Form.Group>
-                                <Button variant="primary" name="dataOra" onClick={handleSubmitPiece} type="reset">
+                                <Button variant="dark" name="dataOra" onClick={handleSubmitPiece} type="reset">
                                     Trimite
                                 </Button>
                             </Form>

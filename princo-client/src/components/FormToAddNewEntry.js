@@ -31,6 +31,7 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
         return (
             <Button
                 type="button"
+                variant='outline-dark'
                 onClick={decoratedOnClick}
             >
                 {children}
@@ -70,7 +71,7 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
                                 <Form.Control size="sm" placeholder="Numele Angajatulu" onChange={(e) => setEmployeeName(e.target.value)} />
                             </Form.Group>
 
-                            <Button variant="primary" name="dataOra" onClick={handleSubmit} type="reset">
+                            <Button variant="dark" name="dataOra" onClick={handleSubmit} type="reset">
                                 Trimite
                             </Button>
                         </Form>
