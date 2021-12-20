@@ -2,7 +2,7 @@ import { Card, Form, Button, Accordion, useAccordionButton } from 'react-bootstr
 import { useState } from "react";
 import postObject from '../javaScriptComponents/postObject';
 
-const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
+const FormToAddNewEntryMP = ({ paletNr, setTrigerFetchIntrari }) => {
     const [userInput, setUserInput] = useState("")
     const [materialInput, setMaterialInput] = useState("")
     const [quantityInput, setQuantitylInput] = useState()
@@ -21,7 +21,7 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
             }
             console.log(datesToBeSent)
             postObject("/stocuriIntrariMateriiPrime/adauga", datesToBeSent)
-                .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
+                .then(setTrigerFetchIntrari(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
         }else{
             setErrorMessage("Ai lasat campuri neintroduse")
             setTimeout(() => {
@@ -29,8 +29,6 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
             }, 3000);
             setMaterialInput(""); setUserInput(""); setQuantitylInput(""); setEmployeeName("")
         }
-      
-
     }
 
 
@@ -38,15 +36,8 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
         const decoratedOnClick = useAccordionButton(eventKey, () =>
             console.log('totally custom!'),
         );
-
         return (
-            <Button
-                type="button"
-                variant='outline-dark'
-                onClick={decoratedOnClick}
-            >
-                {children}
-            </Button>
+            <Button type="button" variant='outline-dark'onClick={decoratedOnClick}>{children}</Button>
         );
     }
 
@@ -86,7 +77,6 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
                                 Trimite
                             </Button>
                         </Form>
-                        
                     </Card.Body>
                 </Accordion.Collapse>
 
@@ -96,4 +86,4 @@ const FormToAddNewEntry = ({ paletNr, setTrigerFetch }) => {
     );
 
 }
-export default FormToAddNewEntry;
+export default FormToAddNewEntryMP;

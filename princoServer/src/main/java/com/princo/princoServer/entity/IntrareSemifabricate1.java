@@ -18,14 +18,16 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name="intrari_materii_prime")
-public class IntrareMateriiPrimePost {
+@Table (name="intrari_semifabricate1")
+public class IntrareSemifabricate1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idIntrareMateriiPrime")
-    private int idIntrareMateriiPrime;
-    @Column(name="idIntrareFK")
-    private int idIntrareFK;
+    @Column(name="idIntrareSemifabricate")
+    private int idIntrareSemifabricat;
+    @Column(name="idIntrarePaletFK")
+    private int idIntrarePaletFK;
+    @Column(name="idIntrarePaletMateriiPrimeFK")
+    private int idIntrarePaletMateriiPrimeFK;
     @Column(name="material")
     private String material;
     @Column(name="userName")

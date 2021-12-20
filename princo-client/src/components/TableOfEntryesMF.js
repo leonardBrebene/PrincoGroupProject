@@ -1,7 +1,7 @@
 import { Table } from 'react-bootstrap';
 
 
-const TableOfEntries = ({ intrariPalet,error }) => {
+const TableOfEntriesMF = ({ intrariPalet,error }) => {
     return (
         <>
             {<h3>{error && error.toString()}</h3>} 
@@ -33,4 +33,4 @@ const TableOfEntries = ({ intrariPalet,error }) => {
     );
 }
 
-export default TableOfEntries;
+export default TableOfEntriesMF;

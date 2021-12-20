@@ -1,8 +1,8 @@
-import { Card, Form, Button, useAccordionButton, Accordion, Stack,Nav } from 'react-bootstrap';
+import { Card, Form, Button, useAccordionButton, Accordion, Stack } from 'react-bootstrap';
 import { useState } from "react";
 import postObject from '../javaScriptComponents/postObject';
 
-const FormToAddAPalet = ({ setTrigerFetch }) => {
+const FormToAddPalletOrPieceMP = ({ setTrigerFetch }) => {
     const [userInput, setUserInput] = useState("")
     const [materialInput, setMaterialInput] = useState("")
     const [pieceInput, setPieceInput] = useState("")
@@ -113,4 +113,4 @@ const FormToAddAPalet = ({ setTrigerFetch }) => {
     );
 
 }
-export default FormToAddAPalet;
+export default FormToAddPalletOrPieceMP;

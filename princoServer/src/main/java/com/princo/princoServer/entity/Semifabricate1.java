@@ -19,8 +19,8 @@ import javax.persistence.Table;
 @Getter
 @Entity
 @Data
-@Table (name="materii_prime")
-public class MateriiPrime {
+@Table (name="semifabricate1")
+public class Semifabricate1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idIntrare")
@@ -31,9 +31,7 @@ public class MateriiPrime {
     private String material;
     @Column(name="dateOfCreate")
     private String dateOfCreate;
-    
  
-
     
 
 

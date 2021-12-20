@@ -6,15 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Setter 
@@ -23,13 +19,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @NoArgsConstructor
 @Entity
 @Table (name="intrari_materii_prime")
-public class IntrareMateriiPrimeGet {
+public class IntrareMateriiPrime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idIntrareMateriiPrime")
     private int idIntrareMateriiPrime;
-    // @Column(name="idIntrarePalet")
-    // private int idIntrarePalet;
+    @Column(name="idIntrareFK")
+    private int idIntrareFK;
     @Column(name="material")
     private String material;
     @Column(name="userName")
@@ -40,10 +36,4 @@ public class IntrareMateriiPrimeGet {
     private float quantity;
     @Column(name="employee")
     private String employee;
-    
-    @JsonIgnore
-    @ManyToOne (fetch =FetchType.LAZY)
-    @JoinColumn(name="idIntrareFK")
-    public MateriiPrime  materiiPrime; 
-    
 }
