@@ -2,7 +2,6 @@ package com.princo.princoServer.service;
 
 import java.util.List;
 
-import com.princo.princoServer.entity.IntrareMateriiPrime;
 import com.princo.princoServer.entity.IntrareSemifabricate1;
 import com.princo.princoServer.repository.IntrareMateriiPrimeRepo;
 import com.princo.princoServer.repository.IntrareSemifabricate1Repo;

@@ -1,9 +1,7 @@
 package com.princo.princoServer.controller;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -107,7 +105,7 @@ public class PrincoController {
     @CrossOrigin
     @PostMapping("/stocuriIntrariSemifabricate1/adauga")
     public Map<String, Object> addEntraceToSemifabricate1Palet(@RequestBody IntrareSemifabricate1 i1) {
-        
+
         return Collections.singletonMap(intrareSemifabricate1Service.adaugaIntrareSemifabricate1(i1), true);
     }
 }
