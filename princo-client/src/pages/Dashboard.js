@@ -2,8 +2,8 @@ import NavbarCustom from "../components/Navbar";
 import QrReader from 'react-qr-reader'
 import { useState } from "react";
 import { Card, Button, Modal } from 'react-bootstrap';
-import FormToAddNewEntryMP from "../components/FormToAddNewEntryMP";
-import TableOfEntries from "../components/TableOfEntryesMF";
+import FormToAddNewEntryMP1 from "../components/FormToAddNewEntryMP1";
+import TableOfEntries from "../components/TableOfEntryesMP1";
 import useFetch from "../javaScriptComponents/useFetch";
 import IpulMeu from "../components/IpulMeu";
 
@@ -48,7 +48,7 @@ const DashBoard = () => {
         < Card className="border-0">
           <Card.Body>
             {errorQr ? "There is an error of scan: " + errorQr : ""}
-            <FormToAddNewEntryMP paletNr={data.idIntrare} />
+            <FormToAddNewEntryMP1 paletNr={data.idIntrare} />
             <TableOfEntries paletNr={data.idIntrare} intrariPalet={data.intrariMateriiPrime} error={error} />
           </Card.Body>
         </Card>

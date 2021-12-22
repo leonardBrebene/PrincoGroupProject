@@ -2,32 +2,33 @@ import { Card, Form, Button, Accordion, useAccordionButton } from 'react-bootstr
 import { useState } from "react";
 import postObject from '../javaScriptComponents/postObject';
 
-const FormToAddNewEntryMP = ({ paletNr, setTrigerFetchIntrari }) => {
-    const [userInput, setUserInput] = useState("")
-    const [materialInput, setMaterialInput] = useState("")
+const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
+    const [userNameManagerInput, setUserNameManagerInput] = useState("")
+    const [pieceInput, setPieceInput] = useState("")
     const [quantityInput, setQuantitylInput] = useState()
     const [employeeName, setEmployeeName] = useState("")
+    const [lotInput, setLotInput] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
 
 
     console.log("Am intrat in FormToAddEntry")
     async function handleSubmit() {
 
-        if(materialInput&&userInput&&quantityInput&&employeeName){
+        if(pieceInput&&userNameManagerInput&&quantityInput&&employeeName&&lotInput){
             const datesToBeSent = {
-                idIntrareFK: paletNr, material: materialInput,
-                userName: userInput, dateOfCreate: new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19),
-                quantity: quantityInput, employee: employeeName
+                paletEntryFK: paletNr, piece: pieceInput,
+                userNameManager: userNameManagerInput, dateOfCreate: new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19),
+                quantity: quantityInput, employee: employeeName,lot:lotInput
             }
             console.log(datesToBeSent)
-            postObject("/stocuriIntrariMateriiPrime/adauga", datesToBeSent)
+            postObject("/stocuriIntrariMateriPrime/adauga", datesToBeSent)
                 .then(setTrigerFetchIntrari(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
         }else{
             setErrorMessage("Ai lasat campuri neintroduse")
             setTimeout(() => {
                 setErrorMessage("") 
             }, 3000);
-            setMaterialInput(""); setUserInput(""); setQuantitylInput(""); setEmployeeName("")
+            setPieceInput(""); setUserNameManagerInput(""); setQuantitylInput(""); setEmployeeName("");setLotInput("");
         }
     }
 
@@ -53,14 +54,19 @@ const FormToAddNewEntryMP = ({ paletNr, setTrigerFetchIntrari }) => {
                         <Form >
                             <Form.Group className="mb-1" >
                                 <Form.Label>Intrare introdusa de:</Form.Label>
-                                <Form.Control required size="sm" placeholder="Nume" onChange={(e) => setUserInput(e.target.value)} />
+                                <Form.Control required size="sm" placeholder="Nume" onChange={(e) => setUserNameManagerInput(e.target.value)} />
                                 <Form.Text className="text-muted">
                                 </Form.Text>
                             </Form.Group>
 
                             <Form.Group className="mb-1" >
+                                <Form.Label>Lot</Form.Label>
+                                <Form.Control size="sm" placeholder="Lot" onChange={(e) => setLotInput(e.target.value)} />
+                            </Form.Group>
+
+                            <Form.Group className="mb-1" >
                                 <Form.Label>Materie Prima</Form.Label>
-                                <Form.Control size="sm" placeholder="Materie prima" onChange={(e) => setMaterialInput(e.target.value)} />
+                                <Form.Control size="sm" placeholder="Materie prima" onChange={(e) => setPieceInput(e.target.value)} />
                             </Form.Group>
 
                             <Form.Group className="mb-1" >
@@ -86,4 +92,4 @@ const FormToAddNewEntryMP = ({ paletNr, setTrigerFetchIntrari }) => {
     );
 
 }
-export default FormToAddNewEntryMP;
+export default FormToAddNewEntryMP1;

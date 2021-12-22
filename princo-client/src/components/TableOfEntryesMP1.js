@@ -13,17 +13,19 @@ const TableOfEntriesMF = ({ intrariPalet,error }) => {
                         <th>DataIntroducerii</th>
                         <th>Material</th>
                         <th>Cantitate</th>
+                        <th>Lot</th>
                         <th>Angajat</th>
                     </tr>
                 </thead>
                 <tbody>
                     { intrariPalet.map(entry =>
-                        <tr key={entry.idIntrareMateriiPrime}>    
-                            <td>{entry.idIntrareMateriiPrime}</td>
-                            <td>{entry.userName}</td>
+                        <tr key={entry.entryId}>    
+                            <td>{entry.entryId}</td>
+                            <td>{entry.userNameManager}</td>
                             <td>{entry.dateOfCreate}</td>
-                            <td>{entry.material}</td>
+                            <td>{entry.piece}</td>
                             <td>{entry.quantity}</td>
+                            <td>{entry.lot}</td>
                             <td>{entry.employee}</td>
                         </tr>
                     )}

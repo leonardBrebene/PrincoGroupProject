@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Setter 
@@ -18,22 +20,24 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name="intrari_materii_prime")
-public class IntrareMateriiPrime {
+@Table (name="raw_materials_entries1")
+public class IntrareMateriiPrime1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idIntrareMateriiPrime")
-    private int idIntrareMateriiPrime;
-    @Column(name="idIntrareFK")
-    private int idIntrareFK;
-    @Column(name="material")
-    private String material;
-    @Column(name="userName")
-    private String userName;
+    @Column(name="entryId")
+    private int entryId;
+    @Column(name="paletEntryFK")
+    private int paletEntryFK;
+    @Column(name="piece")
+    private String piece;
+    @Column(name="userNameManager")
+    private String userNameManager;
     @Column(name="dateOfCreate")
     private String dateOfCreate;
     @Column(name="quantity")
     private float quantity;
     @Column(name="employee")
     private String employee;
+    @Column(name="lot")
+    private String lot;
 }

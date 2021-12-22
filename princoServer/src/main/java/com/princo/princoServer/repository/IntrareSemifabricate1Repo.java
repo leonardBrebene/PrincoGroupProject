@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.Query;
 
     public interface IntrareSemifabricate1Repo extends JpaRepository<IntrareSemifabricate1,Integer> {
        
-        @Query( value = "select * from intrari_semifabricate1 i where i.idIntrarePaletFK = :id",nativeQuery = true)
+        @Query( value = "select * from semiproducts1 s where s.paletEntryFK = :id",nativeQuery = true)
         List<IntrareSemifabricate1> findAllByPaletId(Integer id);
 
-        @Query( value = "select sum(i.quantity) FROM intrari_semifabricate1 i where i.idIntrarePaletMateriiPrimeFK= :idFK AND i.material= :material",nativeQuery = true)
-        Integer sumByPaletnumberAndMaterialS1(Integer idFK,String material);
+        @Query( value = "select sum(s.quantity) FROM semiproducts1 s where s.lastPaletUniqueFK= :idFK AND s.piece= :piece",nativeQuery = true)
+        Integer sumByPaletnumberAndMaterialS1(Integer idFK,String piece);
         
     }

@@ -13,52 +13,44 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.princo.princoServer.entity.IntrareMateriiPrime;
+import com.princo.princoServer.entity.IntrareMateriiPrime1;
 import com.princo.princoServer.entity.IntrareSemifabricate1;
-import com.princo.princoServer.entity.MateriiPrime;
-import com.princo.princoServer.entity.Semifabricate1;
+import com.princo.princoServer.entity.Palet;
+
 import com.princo.princoServer.service.IntrarareMateriiPrimeService;
 import com.princo.princoServer.service.IntrareSemifabricate1Service;
-import com.princo.princoServer.service.MateriiPrimeService;
-import com.princo.princoServer.service.Semifabricate1Service;
+import com.princo.princoServer.service.PaletService;
+
 
 @RestController
 public class PrincoController {
     @Autowired
-    private MateriiPrimeService materiiPrimeService;
+    private PaletService paletService;
     @Autowired
     private IntrarareMateriiPrimeService intrareMateriiPrimeService;
-    @Autowired
-    private Semifabricate1Service semifabricate1Service;
+
     @Autowired
     private IntrareSemifabricate1Service intrareSemifabricate1Service;
 
     @CrossOrigin
-    @GetMapping("/stocuriMateriiPrime")
-    public List<MateriiPrime> stocuriMateriiPrime() {
-        return materiiPrimeService.colecteazaMateriiPrime();
+    @GetMapping("/stocuriPaleti/{tipMaterial}")
+    public List<Palet> stocuriMateriiPrime(@PathVariable String tipMaterial) {
+        return paletService.findPaletsByMaterialType(tipMaterial);
     }
 
     @CrossOrigin
-    @GetMapping("/stocuriIntrariMateriiPrime/{id}")
-
-    public List<IntrareMateriiPrime> intrariMateriiPrime(@PathVariable Integer id) {
-        return intrareMateriiPrimeService.colecteazaIntrariMateriiPrime(id);
-    }
-
-    @CrossOrigin
-    @GetMapping("/stocuriMateriiPrime/{date}")
-    public MateriiPrime paletMateriiPrime(@PathVariable String date) {
-        return materiiPrimeService.getPaletMateriiPrime(date);
+    @GetMapping("/stocuriMateriiPrime/{uniqueId}")
+    public Palet paletMateriiPrime(@PathVariable String uniqueId) {
+        return paletService.getPaletByUniqueId(uniqueId);
     }
 
     @CrossOrigin
     @PostMapping("/stocuriMateriiPrime/adauga")
-    public Map<String, Object> addPalet(@RequestBody MateriiPrime m1) {
+    public Map<String, Object> addPalet(@RequestBody Palet m1) {
 
         m1.setDateOfCreate(LocalDateTime.now().toString());
 
-        if (materiiPrimeService.adaugaPaletMateriiPrime(m1)) {
+        if (paletService.addPalet(m1)) {
             return Collections.singletonMap("succes", true);
         } else {
             return Collections.singletonMap("fail", false);
@@ -66,9 +58,15 @@ public class PrincoController {
     }
 
     @CrossOrigin
-    @PostMapping("/stocuriIntrariMateriiPrime/adauga")
-    public Map<String, Object> addEntraceToPalet(@RequestBody IntrareMateriiPrime i1) {
+    @GetMapping("/stocuriIntrariMateriiPrime1/{id}")
+    public List<IntrareMateriiPrime1> intrariMateriiPrime(@PathVariable Integer id) {
+        return intrareMateriiPrimeService.getPrimeMaterialsEntrances(id);
+    }
 
+    @CrossOrigin
+    @PostMapping("/stocuriIntrariMateriPrime/adauga")
+    public Map<String, Object> addEntraceToPalet(@RequestBody IntrareMateriiPrime1 i1) {
+        i1.setDateOfCreate(LocalDateTime.now().toString());
         if (intrareMateriiPrimeService.adaugaIntrareMateriiPrime(i1)) {
             return Collections.singletonMap("succes", true);
         } else {
@@ -77,27 +75,7 @@ public class PrincoController {
     }
 
     @CrossOrigin
-    @GetMapping("/stocuriSemifabricate1")
-    public List<Semifabricate1> stocuriSemifabricate1() {
-        return semifabricate1Service.colecteazaSemifabricate1();
-    }
-
-    @CrossOrigin
-    @PostMapping("/stocuriSemifabricate1/adauga")
-    public Map<String, Object> addSemifabricatePalet(@RequestBody Semifabricate1 s1) {
-
-        s1.setDateOfCreate(LocalDateTime.now().toString());
-
-        if (semifabricate1Service.adaugaPaletSemifabricate1(s1)) {
-            return Collections.singletonMap("succes", true);
-        } else {
-            return Collections.singletonMap("fail", false);
-        }
-    }
-
-    @CrossOrigin
     @GetMapping("/stocuriIntrariSemifabricate/{id}")
-
     public List<IntrareSemifabricate1> intrariSemifabricate1(@PathVariable Integer id) {
         return intrareSemifabricate1Service.colecteazaIntrariSemifabricate(id);
     }

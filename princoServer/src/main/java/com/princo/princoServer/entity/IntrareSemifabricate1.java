@@ -18,24 +18,29 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name="intrari_semifabricate1")
+@Table (name="semiproducts1")
 public class IntrareSemifabricate1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idIntrareSemifabricate")
-    private int idIntrareSemifabricat;
-    @Column(name="idIntrarePaletFK")
-    private int idIntrarePaletFK;
-    @Column(name="idIntrarePaletMateriiPrimeFK")
-    private int idIntrarePaletMateriiPrimeFK;
-    @Column(name="material")
-    private String material;
-    @Column(name="userName")
-    private String userName;
+    @Column(name="entryId")
+    private int entryId;
+    @Column(name="paletEntryFK")
+    private int paletEntryFK;
+    @Column(name="lastPaletUniqueFK")
+    private int lastPaletUniqueFK;
+    @Column(name="piece")
+    private String piece;
+    @Column(name="quantity")
+    private int quantity;
+    @Column(name="quantityOnLastPalet")
+    private int quantityOnLastPalet;
+    @Column(name="lot")
+    private String lot;
     @Column(name="dateOfCreate")
     private String dateOfCreate;
-    @Column(name="quantity")
-    private float quantity;
+    @Column(name="userNameManager")
+    private String userNameManager;
     @Column(name="employee")
     private String employee;
+
 }

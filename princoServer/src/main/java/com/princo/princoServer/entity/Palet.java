@@ -9,25 +9,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Setter 
 @Getter
 @Entity
 @Data
-@Table (name="materii_prime")
-public class MateriiPrime {
+@Table (name="palet")
+public class Palet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idIntrare")
-    private int idIntrare;
-    @Column(name="userName")
-    private String userName;
-    @Column(name="material")
-    private String material;
+    @Column(name="entryId")
+    private int entryId;
+    @Column(name="uniqueId")
+    private String uniqueId;
+    @Column(name="userNameManager")
+    private String userNameManager;
+    @Column(name="nameOfPalet")
+    private String nameOfPalet;
+    @Column(name="typeofPalet")
+    private String typeofPalet;
     @Column(name="dateOfCreate")
     private String dateOfCreate;
-    
+  
  
 
     

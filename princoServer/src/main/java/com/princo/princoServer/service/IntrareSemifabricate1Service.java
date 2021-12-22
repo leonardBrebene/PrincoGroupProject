@@ -3,7 +3,7 @@ package com.princo.princoServer.service;
 import java.util.List;
 
 import com.princo.princoServer.entity.IntrareSemifabricate1;
-import com.princo.princoServer.repository.IntrareMateriiPrimeRepo;
+import com.princo.princoServer.repository.IntrareMateriiPrime1Repo;
 import com.princo.princoServer.repository.IntrareSemifabricate1Repo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +14,12 @@ public class IntrareSemifabricate1Service {
     @Autowired
     private IntrareSemifabricate1Repo repoSF;
     @Autowired
-    private IntrareMateriiPrimeRepo repoMP;
+    private IntrareMateriiPrime1Repo repoMP;
 
     public String adaugaIntrareSemifabricate1(IntrareSemifabricate1 is1) {
 
-        Integer sumSemifabricate = repoSF.sumByPaletnumberAndMaterialS1(is1.getIdIntrarePaletMateriiPrimeFK(),
-                is1.getMaterial());
-        Integer sumMateriiPrime = repoMP.sumByPaletnumberAndMaterialMP1(is1.getIdIntrarePaletMateriiPrimeFK(),
-                is1.getMaterial());
+        Integer sumSemifabricate = repoSF.sumByPaletnumberAndMaterialS1(is1.getPaletEntryFK(),is1.getPiece());
+        Integer sumMateriiPrime = repoMP.sumByPaletnumberAndMaterialMP1(is1.getLastPaletUniqueFK(),is1.getPiece());
         System.out.println("suma Materii Prime "+ sumMateriiPrime+ "suma semifabricate"+sumSemifabricate);
         if (sumSemifabricate != null && sumMateriiPrime != null) {
             if (sumMateriiPrime >= sumSemifabricate + is1.getQuantity()) {
