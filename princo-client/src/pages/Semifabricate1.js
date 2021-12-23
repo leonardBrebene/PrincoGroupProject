@@ -1,5 +1,4 @@
 import NavbarCustom from "../components/Navbar";
-import FormToAddNewEntrySF1 from "../components/FormToAddNewEntrySF1";
 import FormToAddPalletOrPiece from "../components/FormToAddPalletOrPiece";
 import { Accordion } from 'react-bootstrap';
 import useFetch from '../javaScriptComponents/useFetch';
@@ -11,7 +10,7 @@ import { useState } from "react"
 const Semifabricate1 = () => {
     const [visiblePalet, setVisiblePalet] = useState('0')
     const { data, isPending, error, setTrigerFetch } = useFetch(`${IpulMeu()}/stocuriPaleti/semifabricate1`);
-    const { data: dataIntrari, isPending: isPendingIntrari, error: errorIntrari, setTrigerFetch: setTrigerFetchIntrari } = useFetch(`${IpulMeu()}/stocuriIntrariSemifabricate/${visiblePalet}`);
+    const { data: dataIntrari, isPending: isPendingIntrari, error: errorIntrari, setTrigerFetch: setTrigerFetchIntrari } = useFetch(`${IpulMeu()}/stocuriIntrariSemifabricate1/${visiblePalet}`);
     return (
         <>
             <NavbarCustom />
@@ -26,7 +25,6 @@ const Semifabricate1 = () => {
                         {palet.entryId === visiblePalet && !isPendingIntrari && dataIntrari &&
                             <Accordion.Body>
                                 {<h3>{errorIntrari && errorIntrari.toString()}</h3>}
-                                <FormToAddNewEntrySF1 paletNr={visiblePalet} setTrigerFetchIntrari={setTrigerFetchIntrari} />
                                 <TableOfEntriesSF1 paletNr={palet.entryId} intrariPalet={dataIntrari} error={error} />
                                 Acest palet a fost creat de {palet.userNameManager} la {palet.dateOfCreate}
                             </Accordion.Body>

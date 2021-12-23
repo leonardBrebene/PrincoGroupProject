@@ -42,8 +42,6 @@ public class PaletService {
                 p.setUniqueId(String.valueOf(lastId + 1) + "MF2");
                 break;
         }
-
-        System.out.println("IdulUnic este" +p.getUniqueId() );
         Palet pSaved = repo.save(p);
         if (pSaved != null) {
             return true;

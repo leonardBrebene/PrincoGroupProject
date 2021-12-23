@@ -17,7 +17,7 @@ const FormToAddPalletOrPiece = ({ setTrigerFetch, typeOfPalet }) => {
                 uniqueId: 'empty', dateOfCreate: new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19)
             }
             console.log(datesToBeSent)
-            postObject("/stocuriMateriiPrime/adauga", datesToBeSent)
+            postObject("/stocuriPalet/adauga", datesToBeSent)
                 .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
 
         } else {

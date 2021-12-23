@@ -19,13 +19,15 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
         if (lastPaletUniqueFK && pieceInput && userNameManagerInput && quantityInput && employeeName && quantityOnLastPalet && lot) {
             const datesToBeSent = {
                 paletEntryFK: paletNr, lastPaletUniqueFK : lastPaletUniqueFK, piece: pieceInput, quantity: quantityInput, quantityOnLastPalet: quantityOnLastPalet,
-                lot: lot, dateOfCreate: new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19),
+                lot: lot, dateOfCreate:'',
                 userNameManager: userNameManagerInput, employee: employeeName
             }
             console.log(datesToBeSent)
             postObject("/stocuriIntrariSemifabricate1/adauga", datesToBeSent)
-                .then(setTrigerFetchIntrari(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
+                .then(setTrigerFetchIntrari(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch
+            setPieceInput(""); setUserNameManager(""); setQuantitylInput(""); setEmployeeName(""); setPieceInput(""); setQuantityOnLastPalet(""); setLot("") 
         } else {
+            setTrigerFetchIntrari(prevState => !prevState);
             setErrorMessage("Ai lasat campuri neintroduse")
             setTimeout(() => {
                 setErrorMessage("")

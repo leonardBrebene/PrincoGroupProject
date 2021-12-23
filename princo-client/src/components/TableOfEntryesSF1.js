@@ -2,6 +2,12 @@ import { Table } from 'react-bootstrap';
 
 
 const TableOfEntries = ({ intrariPalet, error }) => {
+    const getColor=(number)=>{
+        if(number<0){
+            return "#ffff99"
+        }
+        return "#b3ff99"
+    }
     return (
         <>
             {<h3>{error && error.toString()}</h3>}
@@ -20,7 +26,7 @@ const TableOfEntries = ({ intrariPalet, error }) => {
                 </thead>
                 <tbody>
                     {intrariPalet.map(entry =>
-                        <tr key={entry.entryId}>
+                        <tr key={entry.dateOfCreate} style={{backgroundColor:getColor(entry.quantity)}}> 
                             <td>{entry.entryId}</td>
                             <td>{entry.lot}</td>
                             <td>{entry.dateOfCreate}</td>

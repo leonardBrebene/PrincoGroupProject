@@ -18,8 +18,8 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name="semiproducts1")
-public class IntrareSemifabricate1 {
+@Table (name="semiproduct_entries1")
+public class SemiproductsEntry1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="entryId")

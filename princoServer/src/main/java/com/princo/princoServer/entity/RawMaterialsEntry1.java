@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @NoArgsConstructor
 @Entity
 @Table (name="raw_materials_entries1")
-public class IntrareMateriiPrime1 {
+public class RawMaterialsEntry1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="entryId")
@@ -35,7 +35,7 @@ public class IntrareMateriiPrime1 {
     @Column(name="dateOfCreate")
     private String dateOfCreate;
     @Column(name="quantity")
-    private float quantity;
+    private int quantity;
     @Column(name="employee")
     private String employee;
     @Column(name="lot")

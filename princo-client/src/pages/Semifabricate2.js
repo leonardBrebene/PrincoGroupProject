@@ -21,7 +21,7 @@ const Semifabricate2 = () => {
     // }
 
     const getdate = () => {
-        return new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 22)
+        return new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19)
     }
     return (
         <div>

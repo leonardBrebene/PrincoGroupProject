@@ -4,7 +4,7 @@ CREATE DATABASE princodb;
 
 USE princodb;
 DROP TABLE palet;
-DROP TABLE semiproducts1;
+DROP TABLE materii_prime;
 DROP TABLE  raw_materials_entries1;
 DELETE FROM materii_prime WHERE idintrare = 3;
  
@@ -31,7 +31,7 @@ foreign key (paletEntryFK) references palet(entryId)
 );
 
 
-CREATE TABLE semiproducts1(
+CREATE TABLE semiproduct_entries1(
 entryId  INT AUTO_INCREMENT PRIMARY KEY,
 paletEntryFK INT,
 lastPaletUniqueFK INT,
@@ -46,15 +46,29 @@ foreign key (paletEntryFK) references palet(entryId),
 foreign key (lastPaletUniqueFK) references palet(entryId)
 );
 
+select * from palet p where p.uniqueId ="2MP1" ;
 select * from palet p;
 select * from raw_materials_entries1;
-select * from semiproducts1;
-select r.entryId,r.piece,r.quantity,r.dateOfcreate,r.userNameManager,r.from  raw_materials_entries1 r
-Union ALL 
-select s.entryId, s.piece, s.quantity,s.dateOfCreate,s.userNameManager from semiproducts1 s;
-select sum(s.quantity) FROM semiproducts1 s where s.lastPaletUniqueFK= 2 AND s.piece= "ceva";
+select * from semiproduct_entries1;
+select * from raw_materials_entries1 r where r.paletEntryFK= 2;
+select s.entryId, s.paletEntryFK, s.piece, s.quantity as quantityOnLastPalet ,s.dateOfCreate,s.userNameManager,s.employee,s.lot from semiproduct_entries1 s where s.lastPaletUniqueFk= 2;
+
+select r.entryId,r.piece,r.quantity,r.dateOfcreate,r.userNameManager,r.employee,r.lot from  raw_materials_entries1 r where r.paletEntryFK=2 Union ALL select s.entryId, s.piece, s.quantity*-1,s.dateOfCreate,s.userNameManager,s.employee,s.lot from semiproduct_entries1 s where s.lastPaletUniqueFk=2;
+select sum(s.quantity) FROM semiproduct_entries1 s where s.lastPaletUniqueFK= 2 AND s.piece= "ceva";
 select sum(r.quantity) FROM raw_materials_entries1 r where r.paletEntryFK= 2 AND r.piece= "ceva";
 SELECT * FROM intrari_materii_prime intrari WHERE idIntrareFK=6 AND intrari.material="sipca 20x20";
 SELECT intrari FROM intrari_materii_prime intrari WHERE intrari.idIntrare = 1  ;
 
-ALTER TABLE materii_prime
+ select
+        s.entryId,
+        s.paletEntryFK,
+        s.piece,
+        s.quantityOnLastPalet ,
+        s.dateOfCreate,
+        s.userNameManager,
+        s.employee,
+        s.lot
+    from
+        semiproduct_entries1 s
+    where
+        s.lastPaletUniqueFk= 2
