@@ -19,6 +19,7 @@ const TableOfEntries = ({ intrariPalet, error }) => {
                         <th>DataIntroducerii</th>
                         <th>Material</th>
                         <th>Cantitate</th>
+                        <th>Piese folosite</th>
                         <th>Responsabil</th>
                         <th>Angajat</th>
                         <th>Paletul anterior</th>
@@ -32,6 +33,7 @@ const TableOfEntries = ({ intrariPalet, error }) => {
                             <td>{entry.dateOfCreate}</td>
                             <td>{entry.piece}</td>
                             <td>{entry.quantity}</td>
+                            <td>{entry.quantityOnLastPalet}</td>
                             <td>{entry.userNameManager}</td>
                             <td>{entry.employee}</td>
                             <td>{entry.lastPaletUniqueFK}</td>

@@ -84,6 +84,6 @@ public class PrincoController {
     @PostMapping("/stocuriIntrariSemifabricate1/adauga")
     public Map<String, Object> addEntraceToSemifabricate1Palet(@RequestBody SemiproductsEntry1 i1) {
         i1.setDateOfCreate(LocalDateTime.now().toString().substring(0,19));
-        return Collections.singletonMap(intrareSemifabricate1Service.adaugaIntrareSemifabricate1(i1), true);
+        return Collections.singletonMap("message",intrareSemifabricate1Service.adaugaIntrareSemifabricate1(i1));
     }
 }

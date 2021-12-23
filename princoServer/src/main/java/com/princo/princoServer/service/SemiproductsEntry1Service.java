@@ -18,7 +18,7 @@ public class SemiproductsEntry1Service {
 
     public String adaugaIntrareSemifabricate1(SemiproductsEntry1 is1) {
 
-        Integer sumSemifabricate = repoSF.sumByPaletnumberAndMaterialS1(is1.getPaletEntryFK(),is1.getPiece());
+        Integer sumSemifabricate = repoSF.sumByPaletnumberAndMaterialS1(is1.getLastPaletUniqueFK(),is1.getPiece());
         Integer sumMateriiPrime = repoMP.sumByPaletNumberAndMaterialMP1(is1.getLastPaletUniqueFK(),is1.getPiece());
         System.out.println("suma Materii Prime "+ sumMateriiPrime+ "suma semifabricate"+sumSemifabricate);
         if (sumSemifabricate != null && sumMateriiPrime != null) {

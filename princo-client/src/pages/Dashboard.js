@@ -12,7 +12,7 @@ const DashBoard = () => {
   const [visibleQrCode, setVisibleQrCode] = useState(false);
   const [errorQr, setQrError] = useState('')
   const [scannedData, setScannedData] = useState('0')
-  const [linkOfRequest, setLinkOfRequest] = useState('')
+  const [linkOfRequest, setLinkOfRequest] = useState('stocuriIntrariMateriiPrime1')
   const [visiblePalet, setVisiblePalet] = useState('0')
   const { data, error, setData } = useFetch(`${IpulMeu()}/stocuriPalet/${scannedData}`);
   const { data: dataIntrari, error: errorIntrari, setTrigerFetch: setTrigerFetchIntrari } = useFetch(`${IpulMeu()}/${linkOfRequest}/${visiblePalet}`);

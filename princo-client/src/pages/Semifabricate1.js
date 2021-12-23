@@ -6,6 +6,7 @@ import IpulMeu from "../components/IpulMeu";
 import QrcodeCustom from "../components/QrCodeCustom";
 import TableOfEntriesSF1 from "../components/TableOfEntryesSF1";
 import { useState } from "react"
+import FormToAddNewEntrySF1 from "../components/FormToAddNewEntrySF1";
 
 const Semifabricate1 = () => {
     const [visiblePalet, setVisiblePalet] = useState('0')
@@ -25,6 +26,7 @@ const Semifabricate1 = () => {
                         {palet.entryId === visiblePalet && !isPendingIntrari && dataIntrari &&
                             <Accordion.Body>
                                 {<h3>{errorIntrari && errorIntrari.toString()}</h3>}
+                                <FormToAddNewEntrySF1 paletNr={palet.entryId} setTrigerFetchIntrari={setTrigerFetchIntrari}/>
                                 <TableOfEntriesSF1 paletNr={palet.entryId} intrariPalet={dataIntrari} error={error} />
                                 Acest palet a fost creat de {palet.userNameManager} la {palet.dateOfCreate}
                             </Accordion.Body>

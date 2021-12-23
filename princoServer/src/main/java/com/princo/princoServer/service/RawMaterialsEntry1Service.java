@@ -3,10 +3,8 @@ package com.princo.princoServer.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.princo.princoServer.entity.RawMaterialsEntry1;
 import com.princo.princoServer.entity.SemiproductsEntry1;

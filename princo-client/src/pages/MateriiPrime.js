@@ -28,7 +28,7 @@ const MateriiPrime = () => {
                         {palet.entryId === visiblePalet && !isPendingIntrari && dataIntrari &&
                             <Accordion.Body>
                                 {<h3>{errorIntrari && errorIntrari.toString()}</h3>}
-                                <FormToAddNewEntryMP1 paletNr={visiblePalet} setTrigerFetchIntrari={setTrigerFetchIntrari} />
+                                <FormToAddNewEntryMP1 paletNr={palet.entryId} setTrigerFetchIntrari={setTrigerFetchIntrari} />
                                 <TableOfEntriesMP1 paletNr={palet.entryId} intrariPalet={dataIntrari} error={error} />
                                 Acest palet a fost creat de {palet.userNameManager} la {palet.dateOfCreate}
                             </Accordion.Body>

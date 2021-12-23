@@ -2,7 +2,6 @@ package com.princo.princoServer.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.princo.princoServer.entity.RawMaterialsEntry1;
-import com.princo.princoServer.entity.SemiproductsEntry1;
 
 import org.springframework.data.jpa.repository.Query;
 import java.util.List;

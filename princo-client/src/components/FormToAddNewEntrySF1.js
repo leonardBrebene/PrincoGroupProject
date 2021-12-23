@@ -23,7 +23,8 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
                 userNameManager: userNameManagerInput, employee: employeeName
             }
             console.log(datesToBeSent)
-            postObject("/stocuriIntrariSemifabricate1/adauga", datesToBeSent)
+            postObject("/stocuriIntrariSemifabricate1/adauga", datesToBeSent,setErrorMessage)
+                .then(console.log("aiintrataici"))
                 .then(setTrigerFetchIntrari(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch
             setPieceInput(""); setUserNameManager(""); setQuantitylInput(""); setEmployeeName(""); setPieceInput(""); setQuantityOnLastPalet(""); setLot("") 
         } else {
