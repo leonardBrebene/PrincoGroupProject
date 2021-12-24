@@ -5,7 +5,8 @@ import postObject from '../javaScriptComponents/postObject';
 const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
 
     const [lastPaletUniqueFK, setLastPaletUniqueFK] = useState("")
-    const [pieceInput, setPieceInput] = useState("")
+    const [oldPieceInput, setOldPieceInput] = useState("")
+    const [newPieceInput, setNewPieceInput] = useState("")
     const [quantityInput, setQuantitylInput] = useState()
     const [quantityOnLastPalet, setQuantityOnLastPalet] = useState()
     const [lot, setLot] = useState("")
@@ -16,24 +17,24 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
     console.log("Am intrat in FormToAddEntry")
     async function handleSubmit() {
 
-        if (lastPaletUniqueFK && pieceInput && userNameManagerInput && quantityInput && employeeName && quantityOnLastPalet && lot) {
+        if (lastPaletUniqueFK && oldPieceInput && userNameManagerInput && quantityInput && employeeName && quantityOnLastPalet && lot) {
             const datesToBeSent = {
-                paletEntryFK: paletNr, lastPaletUniqueFK : lastPaletUniqueFK, piece: pieceInput, quantity: quantityInput, quantityOnLastPalet: quantityOnLastPalet,
+                paletEntryFK: paletNr, lastPaletUniqueFK : lastPaletUniqueFK, oldPiece: oldPieceInput, newPiece: newPieceInput, quantity: quantityInput, quantityOnLastPalet: quantityOnLastPalet,
                 lot: lot, dateOfCreate:'',
                 userNameManager: userNameManagerInput, employee: employeeName
             }
             console.log(datesToBeSent)
             postObject("/stocuriIntrariSemifabricate1/adauga", datesToBeSent,setErrorMessage)
-                .then(console.log("aiintrataici"))
+                .then(console.log("A fost postat"))
                 .then(setTrigerFetchIntrari(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch
-            setPieceInput(""); setUserNameManager(""); setQuantitylInput(""); setEmployeeName(""); setPieceInput(""); setQuantityOnLastPalet(""); setLot("") 
+            setOldPieceInput("");setNewPieceInput(""); setUserNameManager(""); setQuantitylInput(""); setEmployeeName(""); setOldPieceInput(""); setQuantityOnLastPalet(""); setLot("") 
         } else {
             setTrigerFetchIntrari(prevState => !prevState);
             setErrorMessage("Ai lasat campuri neintroduse")
             setTimeout(() => {
                 setErrorMessage("")
             }, 3000);
-            setPieceInput(""); setUserNameManager(""); setQuantitylInput(""); setEmployeeName(""); setPieceInput(""); setQuantityOnLastPalet(""); setLot("")
+            setOldPieceInput("");setNewPieceInput(""); setUserNameManager(""); setQuantitylInput(""); setEmployeeName(""); setOldPieceInput(""); setQuantityOnLastPalet(""); setLot("")
         }
     }
 
@@ -65,8 +66,15 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
                             </Form.Group>
 
                             <Form.Group className="mb-1" >
-                                <Form.Label>Nume piesa:</Form.Label>
-                                <Form.Control required size="sm" placeholder="Nume piesa:" onChange={(e) => setPieceInput(e.target.value)} />
+                                <Form.Label>Nume piesa folosita:</Form.Label>
+                                <Form.Control required size="sm" placeholder="Nume piesa folosita:" onChange={(e) => setOldPieceInput(e.target.value)} />
+                                <Form.Text className="text-muted">
+                                </Form.Text>
+                            </Form.Group>
+
+                            <Form.Group className="mb-1" >
+                                <Form.Label>Nume piesa rezultata:</Form.Label>
+                                <Form.Control required size="sm" placeholder="Nume piesa rezultata:" onChange={(e) => setNewPieceInput(e.target.value)} />
                                 <Form.Text className="text-muted">
                                 </Form.Text>
                             </Form.Group>

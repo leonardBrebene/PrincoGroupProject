@@ -28,8 +28,10 @@ public class SemiproductsEntry1 {
     private int paletEntryFK;
     @Column(name="lastPaletUniqueFK")
     private int lastPaletUniqueFK;
-    @Column(name="piece")
-    private String piece;
+    @Column(name="oldPiece")
+    private String oldPiece;
+    @Column(name="newPiece")
+    private String newPiece;
     @Column(name="quantity")
     private int quantity;
     @Column(name="quantityOnLastPalet")

@@ -14,7 +14,7 @@ const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
     console.log("Am intrat in FormToAddEntry")
     async function handleSubmit() {
 
-        if(pieceInput&&userNameManagerInput&&quantityInput&&employeeName&&lotInput){
+        if(pieceInput&&userNameManagerInput&&quantityInput&&lotInput){
             const datesToBeSent = {
                 paletEntryFK: paletNr, piece: pieceInput,
                 userNameManager: userNameManagerInput, dateOfCreate: '',
@@ -77,10 +77,6 @@ const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
                                 <Form.Control size="sm" placeholder="Cantitate" onChange={(e) => setQuantitylInput(e.target.value)} />
                             </Form.Group>
 
-                            <Form.Group className="mb-1" >
-                                <Form.Label>Numele Angajatului</Form.Label>
-                                <Form.Control size="sm" placeholder="Numele Angajatulu" onChange={(e) => setEmployeeName(e.target.value)} />
-                            </Form.Group>
                             {errorMessage&&<Button variant="danger">{errorMessage.toString()}</Button>}
                             <Button variant="dark" name="dataOra" onClick={handleSubmit} type="reset">
                                 Trimite

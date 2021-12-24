@@ -20,7 +20,7 @@ const TableOfEntriesMF = ({ intrariPalet,error }) => {
                         <th>Material</th>
                         <th>Cantitate</th>
                         <th>Lot</th>
-                        <th>Angajat</th>
+                        {/* <th>Angajat</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +32,7 @@ const TableOfEntriesMF = ({ intrariPalet,error }) => {
                             <td>{entry.piece}</td>
                             <td>{entry.quantity}</td>
                             <td>{entry.lot}</td>
-                            <td>{entry.employee}</td>
+                            {/* <td>{entry.employee}</td> */}
                         </tr>
                     )}
                 </tbody>

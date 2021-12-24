@@ -32,7 +32,7 @@ public class RawMaterialsEntry1Service {
         List<SemiproductsEntry1> semiproductsExits = repoSemi.findAllSemiproducts1EntriesByLastPaletId(id);
         semiproductsExits.stream()
                 .forEach(item -> 
-                    rawMaterialsEntries.add(new RawMaterialsEntry1(item.getEntryId(),item.getPaletEntryFK(),item.getPiece(),
+                    rawMaterialsEntries.add(new RawMaterialsEntry1(item.getEntryId(),item.getPaletEntryFK(),item.getOldPiece(),
                     item.getUserNameManager(),item.getDateOfCreate(),item.getQuantityOnLastPalet()*-1,item.getEmployee(),item.getLot())));
         rawMaterialsEntries.sort(Comparator.comparing(RawMaterialsEntry1::getDateOfCreate));
         return rawMaterialsEntries;

@@ -35,7 +35,7 @@ CREATE TABLE semiproduct_entries1(
 entryId  INT AUTO_INCREMENT PRIMARY KEY,
 paletEntryFK INT,
 lastPaletUniqueFK INT,
-piece VARCHAR(30),
+oldPiece VARCHAR(30),
 quantity INT,
 quantityOnLastPalet INT,
 lot VARCHAR(20),

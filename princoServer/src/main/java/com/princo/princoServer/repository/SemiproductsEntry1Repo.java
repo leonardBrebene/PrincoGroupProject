@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.Query;
         @Query( value = "select * from semiproduct_entries1 s where s.paletEntryFK = :id",nativeQuery = true)
         List<SemiproductsEntry1> findAllByPaletId(Integer id);
 
-        @Query( value = "select sum(s.quantity) FROM semiproduct_entries1 s where s.lastPaletUniqueFK= :idFK AND s.piece= :piece",nativeQuery = true)
-        Integer sumByPaletnumberAndMaterialS1(Integer idFK,String piece);
+        @Query( value = "select sum(s.quantity) FROM semiproduct_entries1 s where s.lastPaletUniqueFK= :idFK AND s.oldPiece= :oldPiece",nativeQuery = true)
+        Integer sumByPaletnumberAndMaterialS1(Integer idFK,String oldPiece);
         
     }

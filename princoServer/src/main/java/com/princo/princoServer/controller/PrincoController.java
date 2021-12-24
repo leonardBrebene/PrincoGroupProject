@@ -48,7 +48,7 @@ public class PrincoController {
     @PostMapping("/stocuriPalet/adauga")
     public Map<String, Object> addPalet(@RequestBody Palet m1) {
 
-        m1.setDateOfCreate(LocalDateTime.now().toString());
+        m1.setDateOfCreate(LocalDateTime.now().toString().substring(0,19));
 
         if (paletService.addPalet(m1)) {
             return Collections.singletonMap("succes", true);
