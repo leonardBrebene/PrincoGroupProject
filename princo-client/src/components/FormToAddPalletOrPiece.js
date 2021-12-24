@@ -6,47 +6,52 @@ const FormToAddPalletOrPiece = ({ setTrigerFetch, typeOfPalet }) => {
     const [userNameManagerInput, setUserNameManagerInput] = useState("")
     const [nameOfPalet, setNameOfPalet] = useState("")
     const [pieceInput, setPieceInput] = useState("")
+    const [lotInput, setLotInput] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
 
+    const showErrorAndSetinputsToNull = () => {
+        setErrorMessage("Ai lasat campuri neintroduse")
+        setTimeout(() => {
+            setErrorMessage("")
+        }, 3000);
+        setUserNameManagerInput(""); setNameOfPalet(""); setPieceInput("")
+    }
 
     async function handleSubmitPalet() {
-
         if (userNameManagerInput && nameOfPalet) {
             const datesToBeSent = {
                 userNameManager: userNameManagerInput, nameOfPalet: nameOfPalet, typeofPalet: typeOfPalet,
                 uniqueId: 'empty', dateOfCreate: new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19)
             }
             console.log(datesToBeSent)
+            
             postObject("/stocuriPalet/adauga", datesToBeSent)
                 .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
-
-        } else {
-            setErrorMessage("Ai lasat campuri neintroduse")
-            setTimeout(() => {
-                setErrorMessage("")
-            }, 3000);
-            setUserNameManagerInput(""); setNameOfPalet("")
-        }
+        } else showErrorAndSetinputsToNull();
     }
 
 
     async function handleSubmitPiece() {
-
         if (userNameManagerInput && pieceInput) {
             const datesToBeSent = { userName: userNameManagerInput, pieceInput: pieceInput, dateOfCreate: new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19) }
             console.log(datesToBeSent)
+            
             postObject("/stocuriMateriiPrime/adauga", datesToBeSent)
                 .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
 
-        } else {
-            setErrorMessage("Ai lasat campuri neintroduse")
-            setTimeout(() => {
-                setErrorMessage("")
-            }, 3000);
-            setUserNameManagerInput(""); setPieceInput("")
-        }
+        } else showErrorAndSetinputsToNull();
     }
 
+    async function handleSubmitLot() {
+        if (userNameManagerInput && lotInput) {
+            const datesToBeSent = { userName: userNameManagerInput, nameOfLot:lotInput, dateOfCreate: '' }
+            console.log(datesToBeSent)
+            
+            postObject("/loturi/adauga", datesToBeSent)
+                .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
+
+        } else showErrorAndSetinputsToNull();
+    }
 
     function CustomToggle({ children, eventKey }) {
         const decoratedOnClick = useAccordionButton(eventKey);
@@ -68,6 +73,7 @@ const FormToAddPalletOrPiece = ({ setTrigerFetch, typeOfPalet }) => {
                     <Stack direction="horizontal" gap={3}>
                         <CustomToggle eventKey="1" className="bg-light border">Adauga tip palet</CustomToggle>
                         <CustomToggle eventKey="2" className="bg-light border">Adauga tip piesa</CustomToggle>
+                        <CustomToggle eventKey="3" className="bg-light border">Adauga tip lot</CustomToggle>
                     </Stack>
                 </Card.Header>
                 < Accordion.Collapse eventKey="1">
@@ -108,6 +114,27 @@ const FormToAddPalletOrPiece = ({ setTrigerFetch, typeOfPalet }) => {
                                 Trimite
                             </Button>
                             <CloseCustomToggle eventKey="2" >Inchide formular</CloseCustomToggle>
+                        </Form>
+                    </Card.Body>
+                </Accordion.Collapse>
+
+                < Accordion.Collapse eventKey="3">
+                    <Card.Body style={{ maxWidth: '360px', border: '0' }} >
+                        <Form >
+                            <Form.Group className="mb-1" >
+                                <Form.Label>Responsabil</Form.Label>
+                                <Form.Control size="sm" placeholder="AndreiDobre" onChange={(e) => setUserNameManagerInput(e.target.value)} />
+                            </Form.Group>
+
+                            <Form.Group className="mb-1" >
+                                <Form.Label>Denumire lot</Form.Label>
+                                <Form.Control size="sm" placeholder="princolot213" onChange={(e) => setLotInput(e.target.value)} />
+                            </Form.Group>
+                            {errorMessage && <Button variant="danger">{errorMessage.toString()}</Button>}
+                            <Button variant="dark" name="dataOra" onClick={handleSubmitLot} type="reset">
+                                Trimite
+                            </Button>
+                            <CloseCustomToggle eventKey="1" >Inchide formular</CloseCustomToggle>
                         </Form>
                     </Card.Body>
                 </Accordion.Collapse>

@@ -4,7 +4,7 @@ CREATE DATABASE princodb;
 
 USE princodb;
 DROP TABLE palet;
-DROP TABLE materii_prime;
+DROP TABLE semiproduct_entries1;
 DROP TABLE  raw_materials_entries1;
 DELETE FROM materii_prime WHERE idintrare = 3;
  
@@ -36,6 +36,7 @@ entryId  INT AUTO_INCREMENT PRIMARY KEY,
 paletEntryFK INT,
 lastPaletUniqueFK INT,
 oldPiece VARCHAR(30),
+newPiece VARCHAR(30),
 quantity INT,
 quantityOnLastPalet INT,
 lot VARCHAR(20),

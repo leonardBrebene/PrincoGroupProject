@@ -1,4 +1,4 @@
-import { Table,Card } from 'react-bootstrap';
+import { Table} from 'react-bootstrap';
 
 
 const TableOfEntries = ({ intrariPalet, error }) => {
