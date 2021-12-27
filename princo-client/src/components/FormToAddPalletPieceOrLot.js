@@ -2,7 +2,7 @@ import { Card, Form, Button, useAccordionButton, Accordion, Stack } from 'react-
 import { useState } from "react";
 import postObject from '../javaScriptComponents/postObject';
 
-const FormToAddPalletOrPiece = ({ setTrigerFetch, typeOfPalet }) => {
+const FormToAddPalletPieceOrLot = ({ setTrigerFetch, typeOfPalet }) => {
     const [userNameManagerInput, setUserNameManagerInput] = useState("")
     const [nameOfPalet, setNameOfPalet] = useState("")
     const [pieceInput, setPieceInput] = useState("")
@@ -25,7 +25,7 @@ const FormToAddPalletOrPiece = ({ setTrigerFetch, typeOfPalet }) => {
             }
             console.log(datesToBeSent)
             
-            postObject("/stocuriPalet/adauga", datesToBeSent)
+            postObject("/stocuriPalet/adauga", datesToBeSent,setErrorMessage)
                 .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
         } else showErrorAndSetinputsToNull();
     }
@@ -36,7 +36,7 @@ const FormToAddPalletOrPiece = ({ setTrigerFetch, typeOfPalet }) => {
             const datesToBeSent = { userName: userNameManagerInput, pieceInput: pieceInput, dateOfCreate: new Date(Date.now() + 2 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 19) }
             console.log(datesToBeSent)
             
-            postObject("/stocuriMateriiPrime/adauga", datesToBeSent)
+            postObject("/stocuriMateriiPrime/adauga", datesToBeSent,setErrorMessage)
                 .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
 
         } else showErrorAndSetinputsToNull();
@@ -44,10 +44,10 @@ const FormToAddPalletOrPiece = ({ setTrigerFetch, typeOfPalet }) => {
 
     async function handleSubmitLot() {
         if (userNameManagerInput && lotInput) {
-            const datesToBeSent = { userName: userNameManagerInput, nameOfLot:lotInput, dateOfCreate: '' }
+            const datesToBeSent = { userNameManager: userNameManagerInput, nameOfLot:lotInput, dateOfCreate: '' }
             console.log(datesToBeSent)
             
-            postObject("/loturi/adauga", datesToBeSent)
+            postObject("/lot/adauga", datesToBeSent,setErrorMessage)
                 .then(setTrigerFetch(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch 
 
         } else showErrorAndSetinputsToNull();
@@ -143,4 +143,4 @@ const FormToAddPalletOrPiece = ({ setTrigerFetch, typeOfPalet }) => {
     );
 
 }
-export default FormToAddPalletOrPiece;
+export default FormToAddPalletPieceOrLot;

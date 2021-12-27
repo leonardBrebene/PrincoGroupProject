@@ -17,6 +17,13 @@ typeofPalet VARCHAR(20),
 dateOfCreate DATETIME(6)
 );
 
+CREATE TABLE lot(
+entryId  INT AUTO_INCREMENT PRIMARY KEY,
+userNameManager VARCHAR(20),
+dateOfCreate DATETIME(6),
+nameOfLot VARCHAR(30)
+);
+
 
 CREATE TABLE raw_materials_entries1(
 entryId INT AUTO_INCREMENT PRIMARY KEY,
@@ -47,13 +54,25 @@ foreign key (paletEntryFK) references palet(entryId),
 foreign key (lastPaletUniqueFK) references palet(entryId)
 );
 
+CREATE TABLE test(
+entryId  INT AUTO_INCREMENT PRIMARY KEY,
+lotId INT,
+piece VARCHAR(20),
+foreign key (lotId) references lot(entryId)
+);
+
+drop table lot;
 select * from palet p where p.uniqueId ="2MP1" ;
 select * from palet p;
+select * from lot;
 select * from raw_materials_entries1;
 select * from semiproduct_entries1;
 select * from raw_materials_entries1 r where r.paletEntryFK= 2;
 select s.entryId, s.paletEntryFK, s.piece, s.quantity as quantityOnLastPalet ,s.dateOfCreate,s.userNameManager,s.employee,s.lot from semiproduct_entries1 s where s.lastPaletUniqueFk= 2;
+select t.entryId, t.piece,l.nameOfLot from test t inner join  lot l on t.lotId=l.entryId ;
 
+insert into lot (userNameManager,dateOfCreate,nameOfLot) values("Diana","2021-12-25 11:04:46","lotul5");
+insert into test(lotId, piece) values( 2,"sipca5x3");
 select sum(s.quantityOnLastPalet) FROM semiproduct_entries1 s where s.lastPaletUniqueFK=3 and s.piece="sipca2x3";
 select r.entryId,r.piece,r.quantity,r.dateOfcreate,r.userNameManager,r.employee,r.lot from  raw_materials_entries1 r where r.paletEntryFK=2 Union ALL select s.entryId, s.piece, s.quantity*-1,s.dateOfCreate,s.userNameManager,s.employee,s.lot from semiproduct_entries1 s where s.lastPaletUniqueFk=2;
 select sum(s.quantity) FROM semiproduct_entries1 s where s.lastPaletUniqueFK= 2 AND s.piece= "ceva";
@@ -73,4 +92,22 @@ SELECT intrari FROM intrari_materii_prime intrari WHERE intrari.idIntrare = 1  ;
     from
         semiproduct_entries1 s
     where
-        s.lastPaletUniqueFk= 2
+        s.lastPaletUniqueFk= 2;
+        
+	 select
+        *
+    from
+        test t
+    inner join
+        lot l
+            on t.lotId=l.entryId;
+            
+	select
+        t.entryId,
+        t.piece,
+        l.nameOfLot
+    from
+        test t
+    inner join
+        lot l
+            on t.lotId=l.entryId

@@ -1,6 +1,9 @@
-import { Card, Form, Button, Accordion, useAccordionButton } from 'react-bootstrap';
+import { Card, Form, Button, Accordion, useAccordionButton, DropdownButton, Dropdown } from 'react-bootstrap';
 import { useState } from "react";
 import postObject from '../javaScriptComponents/postObject';
+import useFetch from '../javaScriptComponents/useFetch';
+import IpulMeu from './IpulMeu';
+import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 
 const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
     const [userNameManagerInput, setUserNameManagerInput] = useState("")
@@ -12,26 +15,27 @@ const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
 
 
     console.log("Am intrat in FormToAddEntry")
+    const { data: dataLots, isPending: isPendingLots, error: errorLots, setTrigerFetch: setTrigerFetchLots } = useFetch(`${IpulMeu()}/stocuriLoturi`);
     async function handleSubmit() {
 
-        if(pieceInput&&userNameManagerInput&&quantityInput&&lotInput){
+        if (pieceInput && userNameManagerInput && quantityInput && lotInput) {
             const datesToBeSent = {
                 paletEntryFK: paletNr, piece: pieceInput,
                 userNameManager: userNameManagerInput, dateOfCreate: '',
-                quantity: quantityInput, employee: employeeName,lot:lotInput
+                quantity: quantityInput, employee: employeeName, lot: lotInput
             }
             console.log(datesToBeSent)
 
-        postObject("/stocuriIntrariMateriPrime/adauga", datesToBeSent,setErrorMessage)
+            postObject("/stocuriIntrariMateriPrime/adauga", datesToBeSent, setErrorMessage)
                 .then(console.log("aiintrataici"))
-                .then( setTrigerFetchIntrari(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch
-            setPieceInput(""); setUserNameManagerInput(""); setQuantitylInput(""); setEmployeeName("");setLotInput("");
-        }else{
+                .then(setTrigerFetchIntrari(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch
+            setPieceInput(""); setUserNameManagerInput(""); setQuantitylInput(""); setEmployeeName(""); setLotInput("");
+        } else {
             setErrorMessage("Ai lasat campuri neintroduse")
             setTimeout(() => {
-                setErrorMessage("") 
+                setErrorMessage("")
             }, 3000);
-            setPieceInput(""); setUserNameManagerInput(""); setQuantitylInput(""); setEmployeeName("");setLotInput("");
+            setPieceInput(""); setUserNameManagerInput(""); setQuantitylInput(""); setEmployeeName(""); setLotInput("");
         }
     }
 
@@ -41,7 +45,7 @@ const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
             console.log('totally custom!'),
         );
         return (
-            <Button type="button" variant='outline-dark'onClick={decoratedOnClick}>{children}</Button>
+            <Button type="button" variant='outline-dark' onClick={decoratedOnClick}>{children}</Button>
         );
     }
 
@@ -55,16 +59,19 @@ const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
                 <Accordion.Collapse eventKey="1">
                     <Card.Body style={{ maxWidth: '360px', border: '0' }} >
                         <Form >
+                            {dataLots &&
+                                <DropdownButton id="dropdown-basic-button" title="Alege lot">
+                                    {dataLots.map(lot=><DropdownItem key={lot.entryId}>{lot.nameOfLot}</DropdownItem>)}
+                                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                </DropdownButton>
+                            }
                             <Form.Group className="mb-1" >
                                 <Form.Label>Intrare introdusa de:</Form.Label>
                                 <Form.Control required size="sm" placeholder="Nume" onChange={(e) => setUserNameManagerInput(e.target.value)} />
                                 <Form.Text className="text-muted">
                                 </Form.Text>
-                            </Form.Group>
-
-                            <Form.Group className="mb-1" >
-                                <Form.Label>Lot</Form.Label>
-                                <Form.Control size="sm" placeholder="Lot" onChange={(e) => setLotInput(e.target.value)} />
                             </Form.Group>
 
                             <Form.Group className="mb-1" >
@@ -77,7 +84,7 @@ const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
                                 <Form.Control size="sm" placeholder="Cantitate" onChange={(e) => setQuantitylInput(e.target.value)} />
                             </Form.Group>
 
-                            {errorMessage&&<Button variant="danger">{errorMessage.toString()}</Button>}
+                            {errorMessage && <Button variant="danger">{errorMessage.toString()}</Button>}
                             <Button variant="dark" name="dataOra" onClick={handleSubmit} type="reset">
                                 Trimite
                             </Button>

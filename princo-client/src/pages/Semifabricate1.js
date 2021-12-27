@@ -1,5 +1,5 @@
 import NavbarCustom from "../components/Navbar";
-import FormToAddPalletOrPiece from "../components/FormToAddPalletOrPiece";
+import FormToAddPalletPieceOrLot from "../components/FormToAddPalletPieceOrLot";
 import { Accordion } from 'react-bootstrap';
 import useFetch from '../javaScriptComponents/useFetch';
 import IpulMeu from "../components/IpulMeu";
@@ -16,7 +16,7 @@ const Semifabricate1 = () => {
         <>
             <NavbarCustom />
             <Accordion>
-                <FormToAddPalletOrPiece setTrigerFetch={setTrigerFetch} typeOfPalet={'semifabricate1'} /> {/*Asa setezi o proprietate pentru o componenta */}
+                <FormToAddPalletPieceOrLot setTrigerFetch={setTrigerFetch} typeOfPalet={'semifabricate1'} /> {/*Asa setezi o proprietate pentru o componenta */}
                 {<h3>{error && error.toString()}</h3>}
                 {!isPending && data.map(palet =>
                     <Accordion.Item eventKey={palet.entryId} key={palet.entryId}>
