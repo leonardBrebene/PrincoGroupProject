@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name="raw_materials_entries1")
+@Table (name="raw_materials_entries")
 public class RawMaterialsEntry1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

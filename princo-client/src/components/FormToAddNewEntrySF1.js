@@ -7,7 +7,7 @@ import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 
 const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
 
-    const [lastPaletUniqueFK, setLastPaletUniqueFK] = useState("")
+    const [lastPaletFK, setLastPaletUniqueFK] = useState("")
     const [oldPieceInput, setOldPieceInput] = useState("")
     const [newPieceInput, setNewPieceInput] = useState("")
     const [quantityInput, setQuantitylInput] = useState()
@@ -21,9 +21,9 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
     console.log("Am intrat in FormToAddEntry")
     async function handleSubmit() {
 
-        if (lastPaletUniqueFK && oldPieceInput && userNameManagerInput && quantityInput && employeeName && quantityOnLastPalet && lotInput) {
+        if (lastPaletFK && oldPieceInput && userNameManagerInput && quantityInput && employeeName && quantityOnLastPalet && lotInput) {
             const datesToBeSent = {
-                paletEntryFK: paletNr, lastPaletUniqueFK : lastPaletUniqueFK, oldPiece: oldPieceInput, newPiece: newPieceInput, quantity: quantityInput, quantityOnLastPalet: quantityOnLastPalet,
+                paletEntryFK: paletNr, lastPaletFK : lastPaletFK, oldPiece: oldPieceInput, newPiece: newPieceInput, quantity: quantityInput, quantityOnLastPalet: quantityOnLastPalet,
                 lotFK: lotInput, dateOfCreate:'',
                 userNameManager: userNameManagerInput, employee: employeeName
             }
@@ -101,7 +101,7 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
                             </Form.Group>
 
                             {dataLots?//daca
-                                <DropdownButton id="dropdown-basic-button" title="Alege lot" >
+                                <DropdownButton id="dropdown-basic-button" title= {lotInput?"Lot ales "+lotInput: "Alege lot"} >
                                     {dataLots.map(lot=>
                                     <DropdownItem key={lot.entryId} onClick={()=>setLotInput(lot.entryId)}>{lot.nameOfLot}</DropdownItem>)}
                                 </DropdownButton>

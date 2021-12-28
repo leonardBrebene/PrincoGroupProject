@@ -4,8 +4,9 @@ CREATE DATABASE princodb;
 
 USE princodb;
 DROP TABLE lot;
-DROP TABLE semiproduct_entries1;
-DROP TABLE  raw_materials_entries1;
+DROP TABLE palet;
+DROP TABLE semiproduct_entries;
+DROP TABLE  raw_materials_entries;
 DELETE FROM materii_prime WHERE idintrare = 3;
 DELETE FROM lot WHERE entryId = 1;
  
@@ -26,7 +27,7 @@ nameOfLot VARCHAR(30)
 );
 
 
-CREATE TABLE raw_materials_entries1(
+CREATE TABLE raw_materials_entries(
 entryId INT AUTO_INCREMENT PRIMARY KEY,
 paletEntryFK INT,
 piece VARCHAR(30),
@@ -40,10 +41,10 @@ foreign key (lotFK) references lot(entryId)
 );
 
 
-CREATE TABLE semiproduct_entries1(
+CREATE TABLE semiproduct_entries(
 entryId  INT AUTO_INCREMENT PRIMARY KEY,
 paletEntryFK INT,
-lastPaletUniqueFK INT,
+lastPaletFK INT,
 oldPiece VARCHAR(30),
 newPiece VARCHAR(30),
 quantity INT,
@@ -53,7 +54,7 @@ dateOfCreate DATETIME(0),
 userNameManager VARCHAR(20),
 employee  VARCHAR(20),
 foreign key (paletEntryFK) references palet(entryId),
-foreign key (lastPaletUniqueFK) references palet(entryId),
+foreign key (lastPaletFK) references palet(entryId),
 foreign key (lotFK) references lot(entryId)
 );
 
@@ -68,12 +69,18 @@ foreign key (lotId) references lot(entryId)
 select * from palet p where p.uniqueId ="2MP1" ;
 select * from palet p;
 select * from lot;
-select * from raw_materials_entries1;
+select * from raw_materials_entries;
+select r.entryId,r.paletEntryFK,r.piece,r.userNameManager,r.dateOfCreate,r.quantity,r.employee,l.nameOfLot as lotFK from raw_materials_entries r inner join lot l on r.lotFK=l.entryId where r.paletEntryFK=1;
+
 select * from semiproduct_entries1;
 select * from raw_materials_entries1 r where r.paletEntryFK= 2;
 select s.entryId, s.paletEntryFK, s.piece, s.quantity as quantityOnLastPalet ,s.dateOfCreate,s.userNameManager,s.employee,s.lot from semiproduct_entries1 s where s.lastPaletUniqueFk= 2;
 select * from semiproduct_entries1 s where s.paletEntryFK = 4;
 select s.entryId,s.paletEntryFK,p.uniqueId as lastPaletUniqueName,s.oldPiece,s.newPiece,s.quantity,s.quantityOnLastPalet,l.nameOfLot as lotFK,s.dateOfCreate,s.userNameManager,s.employee from semiproduct_entries1 s inner join lot l on l.entryId=s.lotFK inner join palet p on s.lastPaletUniqueFK=p.entryId where s.paletEntryFK = 4 ;
+ 
+select r.entryId,r.paletEntryFK,r.piece,r.userNameManager,r.dateOfCreate,r.quantity,r.employee,l.nameOfLot as lotFK from raw_materials_entries r inner join  lot l on r.entryId=l.entryId where r.paletEntryFK= 1;
+select * from semiproduct_entries1 s where s.lastPaletUniqueFk= 1;
+select s.entryId,s.paletEntryFK,s.lastPaletUniqueFK,s.oldPiece,s.newPiece,s.quantity,s.quantityOnLastPalet,l.nameOfLot as lotFK,s.dateOfCreate,s.userNameManager,s.employee from semiproduct_entries1 s inner join lot l on l.entryId=s.lotFK inner join palet p on s.lastPaletUniqueFK=p.entryId where s.lastPaletUniqueFk = 1 ;
  
 select sum(s.quantityOnLastPalet) FROM semiproduct_entries1 s where s.lastPaletUniqueFK= 1 AND s.oldPiece= "scandura 20x200";
 select t.entryId, t.piece,l.nameOfLot from test t inner join  lot l on t.lotId=l.entryId ;

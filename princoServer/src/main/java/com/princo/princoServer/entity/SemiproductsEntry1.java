@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name="semiproduct_entries1")
+@Table (name="semiproduct_entries")
 public class SemiproductsEntry1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +28,8 @@ public class SemiproductsEntry1 {
     private int entryId;
     @Column(name="paletEntryFK")
     private int paletEntryFK;
-    @Column(name="lastPaletUniqueFK")
-    private String lastPaletUniqueFK; //made id String
+    @Column(name="lastPaletFK")
+    private String lastPaletFK; //made id String
     @Column(name="oldPiece")
     private String oldPiece;
     @Column(name="newPiece")

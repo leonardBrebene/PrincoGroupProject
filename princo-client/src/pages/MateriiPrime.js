@@ -15,7 +15,7 @@ const MateriiPrime = () => {
     const { data: dataIntrari, isPending: isPendingIntrari, error: errorIntrari, setTrigerFetch: setTrigerFetchIntrari } = useFetch(`${IpulMeu()}/stocuriIntrariMateriiPrime1/${visiblePalet}`);
     return (
         <> 
-            <>
+
             <NavbarCustom />
             <Accordion>
                 <FormToAddPalletPieceOrLot setTrigerFetch={setTrigerFetch} typeOfPalet={'materiiPrime1'} /> {/*Asa setezi o proprietate pentru o componenta */}
@@ -37,8 +37,6 @@ const MateriiPrime = () => {
                     
                 )}
             </Accordion>
-        </>
-
 
         </>
     );

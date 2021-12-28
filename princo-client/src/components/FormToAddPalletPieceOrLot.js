@@ -71,9 +71,9 @@ const FormToAddPalletPieceOrLot = ({ setTrigerFetch, typeOfPalet }) => {
             <Card >
                 <Card.Header>
                     <Stack direction="horizontal" gap={3}>
-                        <CustomToggle eventKey="1" className="bg-light border">Adauga tip palet</CustomToggle>
-                        <CustomToggle eventKey="2" className="bg-light border">Adauga tip piesa</CustomToggle>
-                        <CustomToggle eventKey="3" className="bg-light border">Adauga tip lot</CustomToggle>
+                        <CustomToggle eventKey="1" className="bg-light border">Adauga palet</CustomToggle>
+                        <CustomToggle eventKey="3" className="bg-light border">Adauga lot</CustomToggle>
+                        <CustomToggle eventKey="2" className="bg-light border">Adauga piesa</CustomToggle>
                     </Stack>
                 </Card.Header>
                 < Accordion.Collapse eventKey="1">

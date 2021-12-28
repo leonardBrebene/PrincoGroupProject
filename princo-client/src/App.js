@@ -10,6 +10,8 @@ import Semifabricate2 from './pages/Semifabricate2';
 import ProduseFinite from './pages/ProduseFinite';
 import Angajati from './pages/Angajati';
 import Rezultate from './pages/Rezultate';
+import Vanzari from './pages/Vanzari';
+import Rebuturi from './pages/Rebuturi';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
       <Route path='/materiiprime' element={<MateriiPrime />} />
       <Route path='/semifabricate1' element={<Semifabricate1 />} />
       <Route path='/semifabricate2' element={<Semifabricate2 />} />
+      <Route path='/vanzari' element={<Vanzari/>} />
+      <Route path='/rebuturi' element={<Rebuturi/>} />
       <Route path='/sign-up' element={<SignUp />} />
       <Route path='/login' element={<Login />} />
       <Route path='/' element={<DashBoard />} />

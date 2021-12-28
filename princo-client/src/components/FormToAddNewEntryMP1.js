@@ -67,7 +67,7 @@ const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
                     <Card.Body style={{ maxWidth: '360px', border: '0' }} >
                         <Form >
                             {dataLots?//daca
-                                <DropdownButton id="dropdown-basic-button" title="Alege lot" >
+                                <DropdownButton id="dropdown-basic-button" title= {lotInput?"Lot ales "+lotInput: "Alege lot"} >
                                     {dataLots.map(lot=>
                                     <DropdownItem key={lot.entryId} onClick={()=>setLotInput(lot.entryId)}>{lot.nameOfLot}</DropdownItem>)}
                                 </DropdownButton>

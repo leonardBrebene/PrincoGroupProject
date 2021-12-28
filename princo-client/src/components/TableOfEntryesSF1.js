@@ -11,7 +11,7 @@ const TableOfEntries = ({ intrariPalet, error }) => {
     return (
        <>
             {<h3>{error && error.toString()}</h3>}
-            <Table striped bordered hover size="sm">
+            <Table responsive striped bordered hover size="sm">
                 <thead>
                     <tr>
                         <th>IdIntrare</th>
@@ -38,7 +38,7 @@ const TableOfEntries = ({ intrariPalet, error }) => {
                             <td>{entry.quantityOnLastPalet}</td>
                             <td>{entry.userNameManager}</td>
                             <td>{entry.employee}</td>
-                            <td>{entry.lastPaletUniqueFK}</td>
+                            <td>{entry.lastPaletFK}</td>
                         </tr>
                     )}
                 </tbody>
