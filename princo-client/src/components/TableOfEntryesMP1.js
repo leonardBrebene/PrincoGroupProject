@@ -31,7 +31,7 @@ const TableOfEntriesMF = ({ intrariPalet,error }) => {
                             <td>{entry.dateOfCreate}</td>
                             <td>{entry.piece}</td>
                             <td>{entry.quantity}</td>
-                            <td>{entry.lot}</td>
+                            <td>{entry.lotFK}</td>
                             {/* <td>{entry.employee}</td> */}
                         </tr>
                     )}

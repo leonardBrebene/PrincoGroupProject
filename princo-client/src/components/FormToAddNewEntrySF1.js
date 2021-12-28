@@ -1,6 +1,9 @@
-import { Card, Form, Button, Accordion, useAccordionButton } from 'react-bootstrap';
+import { Card, Form, Button, Accordion, useAccordionButton,DropdownButton } from 'react-bootstrap';
 import { useState } from "react";
 import postObject from '../javaScriptComponents/postObject';
+import useFetch from '../javaScriptComponents/useFetch';
+import IpulMeu from './IpulMeu';
+import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 
 const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
 
@@ -9,32 +12,33 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
     const [newPieceInput, setNewPieceInput] = useState("")
     const [quantityInput, setQuantitylInput] = useState()
     const [quantityOnLastPalet, setQuantityOnLastPalet] = useState()
-    const [lot, setLot] = useState("")
+    const [lotInput, setLotInput] = useState("")
     const [userNameManagerInput, setUserNameManager] = useState("")
     const [employeeName, setEmployeeName] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
 
+    const { data: dataLots, isPending: isPendingLots, error: errorLots, setTrigerFetch: setTrigerFetchLots } = useFetch(`${IpulMeu()}/stocuriLoturi`);
     console.log("Am intrat in FormToAddEntry")
     async function handleSubmit() {
 
-        if (lastPaletUniqueFK && oldPieceInput && userNameManagerInput && quantityInput && employeeName && quantityOnLastPalet && lot) {
+        if (lastPaletUniqueFK && oldPieceInput && userNameManagerInput && quantityInput && employeeName && quantityOnLastPalet && lotInput) {
             const datesToBeSent = {
                 paletEntryFK: paletNr, lastPaletUniqueFK : lastPaletUniqueFK, oldPiece: oldPieceInput, newPiece: newPieceInput, quantity: quantityInput, quantityOnLastPalet: quantityOnLastPalet,
-                lot: lot, dateOfCreate:'',
+                lotFK: lotInput, dateOfCreate:'',
                 userNameManager: userNameManagerInput, employee: employeeName
             }
             console.log(datesToBeSent)
             postObject("/stocuriIntrariSemifabricate1/adauga", datesToBeSent,setErrorMessage)
                 .then(console.log("A fost postat"))
                 .then(setTrigerFetchIntrari(prevState => !prevState)) //dupa ce ai facut post declanseaza un fetch
-            setOldPieceInput("");setNewPieceInput(""); setUserNameManager(""); setQuantitylInput(""); setEmployeeName(""); setOldPieceInput(""); setQuantityOnLastPalet(""); setLot("") 
+            setOldPieceInput("");setNewPieceInput(""); setUserNameManager(""); setQuantitylInput(""); setEmployeeName(""); setOldPieceInput(""); setQuantityOnLastPalet(""); setLotInput("") 
         } else {
             setTrigerFetchIntrari(prevState => !prevState);
             setErrorMessage("Ai lasat campuri neintroduse")
             setTimeout(() => {
                 setErrorMessage("")
             }, 3000);
-            setOldPieceInput("");setNewPieceInput(""); setUserNameManager(""); setQuantitylInput(""); setEmployeeName(""); setOldPieceInput(""); setQuantityOnLastPalet(""); setLot("")
+            setOldPieceInput("");setNewPieceInput(""); setUserNameManager(""); setQuantitylInput(""); setEmployeeName(""); setOldPieceInput(""); setQuantityOnLastPalet(""); setLotInput("")
         }
     }
 
@@ -45,6 +49,13 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
         );
         return (
             <Button type="button" variant='outline-dark' onClick={decoratedOnClick}>{children}</Button>
+        );
+    }
+
+    function CloseCustomToggle({ children, eventKey }) {
+        const decoratedOnClick = useAccordionButton(eventKey);
+        return (
+            <Button type="button" variant="outline-danger" size="sm" style={{ position: "relative", right: "-40%" }} onClick={decoratedOnClick}>{children}</Button>
         );
     }
 
@@ -89,10 +100,14 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
                                 <Form.Control size="sm" placeholder="Numar de piese rezultate" onChange={(e) => setQuantitylInput(e.target.value)} />
                             </Form.Group>
 
-                            <Form.Group className="mb-1" >
-                                <Form.Label>Lot</Form.Label>
-                                <Form.Control size="sm" placeholder="Lot" onChange={(e) => setLot(e.target.value)} />
-                            </Form.Group>
+                            {dataLots?//daca
+                                <DropdownButton id="dropdown-basic-button" title="Alege lot" >
+                                    {dataLots.map(lot=>
+                                    <DropdownItem key={lot.entryId} onClick={()=>setLotInput(lot.entryId)}>{lot.nameOfLot}</DropdownItem>)}
+                                </DropdownButton>
+                                //dacanu
+                                :setTrigerFetchLots(prevState => !prevState)
+                            }
 
                             <Form.Group className="mb-1" >
                                 <Form.Label>Intrare introdusa de:</Form.Label>
@@ -110,6 +125,7 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
                             <Button variant="dark" name="dataOra" onClick={handleSubmit} type="reset">
                                 Trimite
                             </Button>
+                            <CloseCustomToggle eventKey="1" >Inchide formular</CloseCustomToggle>
                         </Form>
                     </Card.Body>
                 </Accordion.Collapse>

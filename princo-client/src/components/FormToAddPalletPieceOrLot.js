@@ -134,7 +134,7 @@ const FormToAddPalletPieceOrLot = ({ setTrigerFetch, typeOfPalet }) => {
                             <Button variant="dark" name="dataOra" onClick={handleSubmitLot} type="reset">
                                 Trimite
                             </Button>
-                            <CloseCustomToggle eventKey="1" >Inchide formular</CloseCustomToggle>
+                            <CloseCustomToggle eventKey="3" >Inchide formular</CloseCustomToggle>
                         </Form>
                     </Card.Body>
                 </Accordion.Collapse>

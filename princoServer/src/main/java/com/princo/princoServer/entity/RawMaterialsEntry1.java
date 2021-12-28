@@ -37,6 +37,6 @@ public class RawMaterialsEntry1 {
     private int quantity;
     @Column(name="employee")
     private String employee;
-    @Column(name="lot")
-    private String lot;
+    @Column(name="lotFK")
+    private String lotFK;
 }

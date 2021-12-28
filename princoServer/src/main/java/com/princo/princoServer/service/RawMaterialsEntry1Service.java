@@ -29,11 +29,11 @@ public class RawMaterialsEntry1Service {
 
     public List<RawMaterialsEntry1> getRawMaterialsEntrances(Integer id) {
         List<RawMaterialsEntry1> rawMaterialsEntries =repo.findAllRawMaterial1EntriesByPaletId(id);
-        List<SemiproductsEntry1> semiproductsExits = repoSemi.findAllSemiproducts1EntriesByLastPaletId(id);
+        List<SemiproductsEntry1> semiproductsExits = repoSemi.findAllSemiproducts1EntriesByLastPaletId(id); //TODO custum querry
         semiproductsExits.stream()
                 .forEach(item -> 
                     rawMaterialsEntries.add(new RawMaterialsEntry1(item.getEntryId(),item.getPaletEntryFK(),item.getOldPiece(),
-                    item.getUserNameManager(),item.getDateOfCreate(),item.getQuantityOnLastPalet()*-1,item.getEmployee(),item.getLot())));
+                    item.getUserNameManager(),item.getDateOfCreate(),item.getQuantityOnLastPalet()*-1,item.getEmployee(),item.getLotFK())));
         rawMaterialsEntries.sort(Comparator.comparing(RawMaterialsEntry1::getDateOfCreate));
         return rawMaterialsEntries;
     }

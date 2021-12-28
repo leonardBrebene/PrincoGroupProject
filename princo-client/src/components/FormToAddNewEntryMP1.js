@@ -1,4 +1,4 @@
-import { Card, Form, Button, Accordion, useAccordionButton, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Card, Form, Button, Accordion, useAccordionButton, DropdownButton } from 'react-bootstrap';
 import { useState } from "react";
 import postObject from '../javaScriptComponents/postObject';
 import useFetch from '../javaScriptComponents/useFetch';
@@ -22,7 +22,7 @@ const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
             const datesToBeSent = {
                 paletEntryFK: paletNr, piece: pieceInput,
                 userNameManager: userNameManagerInput, dateOfCreate: '',
-                quantity: quantityInput, employee: employeeName, lot: lotInput
+                quantity: quantityInput, employee: employeeName, lotFK: lotInput
             }
             console.log(datesToBeSent)
 
@@ -49,6 +49,13 @@ const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
         );
     }
 
+    function CloseCustomToggle({ children, eventKey }) {
+        const decoratedOnClick = useAccordionButton(eventKey);
+        return (
+            <Button type="button" variant="outline-danger" size="sm" style={{ position: "relative", right: "-40%" }} onClick={decoratedOnClick}>{children}</Button>
+        );
+    }
+
     return (
 
         <Accordion defaultActiveKey="0" >
@@ -59,13 +66,13 @@ const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
                 <Accordion.Collapse eventKey="1">
                     <Card.Body style={{ maxWidth: '360px', border: '0' }} >
                         <Form >
-                            {dataLots &&
-                                <DropdownButton id="dropdown-basic-button" title="Alege lot">
-                                    {dataLots.map(lot=><DropdownItem key={lot.entryId}>{lot.nameOfLot}</DropdownItem>)}
-                                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                            {dataLots?//daca
+                                <DropdownButton id="dropdown-basic-button" title="Alege lot" >
+                                    {dataLots.map(lot=>
+                                    <DropdownItem key={lot.entryId} onClick={()=>setLotInput(lot.entryId)}>{lot.nameOfLot}</DropdownItem>)}
                                 </DropdownButton>
+                                //dacanu
+                                :setTrigerFetchLots(prevState => !prevState)
                             }
                             <Form.Group className="mb-1" >
                                 <Form.Label>Intrare introdusa de:</Form.Label>
@@ -88,6 +95,7 @@ const FormToAddNewEntryMP1 = ({ paletNr, setTrigerFetchIntrari }) => {
                             <Button variant="dark" name="dataOra" onClick={handleSubmit} type="reset">
                                 Trimite
                             </Button>
+                            <CloseCustomToggle eventKey="1" >Inchide formular</CloseCustomToggle>
                         </Form>
                     </Card.Body>
                 </Accordion.Collapse>

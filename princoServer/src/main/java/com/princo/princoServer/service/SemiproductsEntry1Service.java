@@ -20,9 +20,9 @@ public class SemiproductsEntry1Service {
 
         Integer sumSemifabricate = repoSF.sumByPaletnumberAndMaterialS1(is1.getLastPaletUniqueFK(),is1.getOldPiece());
         Integer sumMateriiPrime = repoMP.sumByPaletNumberAndMaterialMP1(is1.getLastPaletUniqueFK(),is1.getOldPiece());
-        System.out.println("suma Materii Prime "+ sumMateriiPrime+ "suma semifabricate"+sumSemifabricate);
+        System.out.println("suma Materii Prime "+ sumMateriiPrime+ " suma semifabricate "+sumSemifabricate +" cantitate introdusa "+is1.getQuantityOnLastPalet());
         if (sumSemifabricate != null && sumMateriiPrime != null) {
-            if (sumMateriiPrime >= sumSemifabricate + is1.getQuantity()) {
+            if (sumMateriiPrime >= sumSemifabricate + is1.getQuantityOnLastPalet()) {
                 repoSF.save(is1);
                 return "Intrare adaugata cu succes";
             } else {

@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 
 @Setter 
@@ -27,7 +29,7 @@ public class SemiproductsEntry1 {
     @Column(name="paletEntryFK")
     private int paletEntryFK;
     @Column(name="lastPaletUniqueFK")
-    private int lastPaletUniqueFK;
+    private String lastPaletUniqueFK; //made id String
     @Column(name="oldPiece")
     private String oldPiece;
     @Column(name="newPiece")
@@ -36,13 +38,16 @@ public class SemiproductsEntry1 {
     private int quantity;
     @Column(name="quantityOnLastPalet")
     private int quantityOnLastPalet;
-    @Column(name="lot")
-    private String lot;
+    @Column(name="lotFk")
+    private String lotFK;
     @Column(name="dateOfCreate")
     private String dateOfCreate;
     @Column(name="userNameManager")
     private String userNameManager;
     @Column(name="employee")
     private String employee;
+    // @JsonIgnoreProperties(ignoreUnknown = true)
+    // @Column(name="lastPaletUniqueName")
+    // private String lastPaletUniqueName;
 
 }

@@ -30,7 +30,7 @@ const TableOfEntries = ({ intrariPalet, error }) => {
                     {intrariPalet.map(entry =>
                         <tr key={entry.dateOfCreate} style={{backgroundColor:getColor(entry.quantity)}}> 
                             <td>{entry.entryId}</td>
-                            <td>{entry.lot}</td>
+                            <td>{entry.lotFK}</td>
                             <td>{entry.dateOfCreate}</td>
                             <td>{entry.newPiece}</td>
                             <td>{entry.oldPiece}</td>
