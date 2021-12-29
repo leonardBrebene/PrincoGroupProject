@@ -1,9 +1,11 @@
-import { Card, Form, Button, Accordion, useAccordionButton,DropdownButton } from 'react-bootstrap';
+import { Card, Form, Button, Accordion,DropdownButton } from 'react-bootstrap';
 import { useState } from "react";
 import postObject from '../javaScriptComponents/postObject';
 import useFetch from '../javaScriptComponents/useFetch';
 import IpulMeu from './IpulMeu';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
+import ButtonForAcordionForm from '../javaScriptComponents/ButtonForAcordionForm';
+import CloseButtonForAcordionForm from '../javaScriptComponents/CloseButtonForAcordionForm';
 
 const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
 
@@ -17,8 +19,8 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
     const [employeeName, setEmployeeName] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
 
-    const { data: dataLots, isPending: isPendingLots, error: errorLots, setTrigerFetch: setTrigerFetchLots } = useFetch(`${IpulMeu()}/stocuriLoturi`);
-    console.log("Am intrat in FormToAddEntry")
+    const { data: dataLots, error: errorLots, setTrigerFetch: setTrigerFetchLots } = useFetch(`${IpulMeu()}/stocuriLoturi`);
+    console.log("Am intrat in FormToAddEntry SF1")
     async function handleSubmit() {
 
         if (lastPaletFK && oldPieceInput && userNameManagerInput && quantityInput && employeeName && quantityOnLastPalet && lotInput) {
@@ -43,28 +45,12 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
     }
 
 
-    function CustomToggle({ children, eventKey }) {
-        const decoratedOnClick = useAccordionButton(eventKey, () =>
-            console.log('totally custom!'),
-        );
-        return (
-            <Button type="button" variant='outline-dark' onClick={decoratedOnClick}>{children}</Button>
-        );
-    }
-
-    function CloseCustomToggle({ children, eventKey }) {
-        const decoratedOnClick = useAccordionButton(eventKey);
-        return (
-            <Button type="button" variant="outline-danger" size="sm" style={{ position: "relative", right: "-40%" }} onClick={decoratedOnClick}>{children}</Button>
-        );
-    }
-
     return (
 
         <Accordion defaultActiveKey="0" >
             <Card>
                 <Card.Header>
-                    <CustomToggle eventKey="1">Adauga o intrare</CustomToggle>
+                    <ButtonForAcordionForm eventKey="1">Adauga o intrare</ButtonForAcordionForm>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
                     <Card.Body style={{ maxWidth: '360px', border: '0' }} >
@@ -99,9 +85,9 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
                                 <Form.Label>Numar de piese rezultate</Form.Label>
                                 <Form.Control size="sm" placeholder="Numar de piese rezultate" onChange={(e) => setQuantitylInput(e.target.value)} />
                             </Form.Group>
-
+                            {errorLots&&"Loturile nu pot fi incarcate"}
                             {dataLots?//daca
-                                <DropdownButton id="dropdown-basic-button" title= {lotInput?"Lot ales "+lotInput: "Alege lot"} >
+                                <DropdownButton id="dropdown-basic-button" title= {lotInput?"Lot ales: "+dataLots[lotInput-1].nameOfLot.toString(): "Alege lot"} >
                                     {dataLots.map(lot=>
                                     <DropdownItem key={lot.entryId} onClick={()=>setLotInput(lot.entryId)}>{lot.nameOfLot}</DropdownItem>)}
                                 </DropdownButton>
@@ -125,7 +111,7 @@ const FormToAddNewEntrySF1 = ({ paletNr, setTrigerFetchIntrari }) => {
                             <Button variant="dark" name="dataOra" onClick={handleSubmit} type="reset">
                                 Trimite
                             </Button>
-                            <CloseCustomToggle eventKey="1" >Inchide formular</CloseCustomToggle>
+                            <CloseButtonForAcordionForm eventKey="1" >Inchide formular</CloseButtonForAcordionForm>
                         </Form>
                     </Card.Body>
                 </Accordion.Collapse>

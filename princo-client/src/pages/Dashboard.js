@@ -7,6 +7,7 @@ import FormToAddNewEntryMP1 from "../components/FormToAddNewEntryMP1";
 import TableOfEntriesSF1 from "../components/TableOfEntryesSF1";
 import useFetch from "../javaScriptComponents/useFetch";
 import IpulMeu from "../components/IpulMeu";
+import FormToAddLotOrProvider from "../components/FormToAddLotOrProvider";
 
 const DashBoard = () => {
   const [visibleQrCode, setVisibleQrCode] = useState(false);
@@ -44,7 +45,7 @@ const DashBoard = () => {
   return (
     <>
       <NavbarCustom />
-      <p>Dashboard</p>
+      <FormToAddLotOrProvider setTrigerFetch={setTrigerFetchIntrari}/>
       <Modal show={visibleQrCode} size="md">
         <QrReader
           class="mx-auto"

@@ -20,8 +20,8 @@ const NavbarCustom = () => {
                         <Nav.Link onClick={() => changeHref("/semifabricate1")} >Semifabricate 1</Nav.Link>
                         <Nav.Link onClick={() => changeHref("/semifabricate2")}>Semifabricate 2</Nav.Link>
                         <Nav.Link onClick={() => changeHref("/produseFinite")}>Produse Finite</Nav.Link>
-                        <Nav.Link onClick={() => changeHref("/vanzari")}>Vanzari</Nav.Link>
                         <Nav.Link onClick={() => changeHref("/rebuturi")}>Rebuturi</Nav.Link>
+                        <Nav.Link onClick={() => changeHref("/vanzari")}>Vanzari</Nav.Link>
                         <Nav.Link onClick={() => changeHref("/angajati")}>Angajati</Nav.Link>
                         <Nav.Link onClick={() => changeHref("/rezultate")} >Rezultate</Nav.Link>
                     </Nav>
