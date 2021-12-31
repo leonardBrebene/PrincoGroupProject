@@ -11,10 +11,10 @@ const TableOfEntriesMF = ({ intrariPalet,error }) => {
     return (
         <>
             {<h3>{error && error.toString()}</h3>} 
-            <Table responsive striped bordered hover size="sm">
+            <Table responsive striped bordered hover style={{padding:'2px', textAlign:'center', fontSize:'2.5vh'}}>
                 <thead>
                     <tr>
-                        <th>IdIntrare</th>
+                        <th>Id</th>
                         <th>Responsabil</th>
                         <th>DataIntroducerii</th>
                         <th>Material</th>

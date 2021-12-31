@@ -11,19 +11,20 @@ const TableOfEntries = ({ intrariPalet, error }) => {
     return (
        <>
             {<h3>{error && error.toString()}</h3>}
-            <Table responsive striped bordered hover size="sm">
+            <Table responsive striped bordered hover size="sm" style={{padding:'2px', textAlign:'center', fontSize:'2.5vh'}}>
                 <thead>
                     <tr>
-                        <th>IdIntrare</th>
+                        <th>Id</th>
                         <th>Lot</th>
-                        <th>DataIntroducerii</th>
-                        <th>Piesa rezultata</th>
-                        <th>Piesa folosita</th>
-                        <th>Cantitate</th>
-                        <th>CantitateFolosita</th>
-                        <th>Responsabil</th>
+                        <th>Data Intrare</th>
+                        <th>Piesa rez.</th>
+                        <th>Piesa fol.</th>
+                        <th>Cant.</th>
+                        <th>Cant.Fol</th>
+                        <th>Resp</th>
                         <th>Angajat</th>
-                        <th>Paletul anterior</th>
+                        <th>Pal. ant.</th>
+                        <th>Op. teh.</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,7 @@ const TableOfEntries = ({ intrariPalet, error }) => {
                             <td>{entry.userNameManager}</td>
                             <td>{entry.employee}</td>
                             <td>{entry.lastPaletFK}</td>
+                            <td>{entry.operatieTehnica}</td>
                         </tr>
                     )}
                 </tbody>

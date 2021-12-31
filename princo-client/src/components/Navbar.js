@@ -11,15 +11,14 @@ const NavbarCustom = () => {
     return (
         <Navbar bg="dark" variant="dark" expand="md">
             <Container >
-                <Navbar.Brand onClick={() => changeHref("/")}>Princo Group</Navbar.Brand>
+                <Navbar.Brand onClick={() => changeHref("/")}>Princo</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link onClick={() => changeHref("/")}>Acasa</Nav.Link>
-                        <Nav.Link onClick={() => changeHref("/materiiprime")}>Materii prime</Nav.Link>
-                        <Nav.Link onClick={() => changeHref("/semifabricate1")} >Semifabricate 1</Nav.Link>
-                        <Nav.Link onClick={() => changeHref("/semifabricate2")}>Semifabricate 2</Nav.Link>
-                        <Nav.Link onClick={() => changeHref("/produseFinite")}>Produse Finite</Nav.Link>
+                        <Nav.Link onClick={() => changeHref("/materiiprime")}>Mat.prime</Nav.Link>
+                        <Nav.Link onClick={() => changeHref("/semifabricate1")}>Semif.1</Nav.Link>
+                        <Nav.Link onClick={() => changeHref("/semifabricate2")}>Semif.2</Nav.Link>
+                        <Nav.Link onClick={() => changeHref("/produseFinite")}>Prod.Finite</Nav.Link>
                         <Nav.Link onClick={() => changeHref("/rebuturi")}>Rebuturi</Nav.Link>
                         <Nav.Link onClick={() => changeHref("/vanzari")}>Vanzari</Nav.Link>
                         <Nav.Link onClick={() => changeHref("/angajati")}>Angajati</Nav.Link>
